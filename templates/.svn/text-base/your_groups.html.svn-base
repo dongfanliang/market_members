@@ -1,0 +1,109 @@
+{% extends "base_site.html" %}
+{% block content %}
+        	<div class="conment-title">
+            	<table border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="refresh"><a href="/groups">刷新</a></td>
+                    <td class="add"><a href="/groupnew">添加</a></td>
+                    <td class="delete"><a href="#" onclick="deletegroup('groupinfo','formgroup','/groupdel/','{{ user }}')">删除</a></td>             
+                  </tr>
+                </table>            	
+            </div>
+            
+            <div class="conment-div">
+            	
+                <div class="div">
+                	
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="5" background="/media/images/table/table_l.gif"></td>
+                        <td>
+				<form id='formgroup' action="" method="post"> {% csrf_token %}
+                        	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">                            
+                              <thead>
+                                    <tr><th width="4%"><div class="th_div"><span><input id="checkall" name="checkall" type="checkbox" value="" class="a_input" onclick="CheckTitle('groupinfo','checkall')"/></span><span class="rt"></span></div></th>
+                                      <th width="23%" >Owner</th>
+                                    <th width="19%" ><span>Name</span></th>
+                                    <th width="23%" >Description</th>
+                              <tbody>
+                                {% for group in groups_list.object_list %}                                                                                         
+                                 <tr >
+				    <td class="txc"><input name="groupinfo" type="checkbox" value="{{group.name}}:{{ group.owner_id }}" onclick="CheckItem('groupinfo', 'checkall')" /></td>	
+                                    <td align="center" valign="middle">{{ group.owner_id }}</td>
+                                    <td align="center" valign="middle">{{ group.name}}</td>
+                                    <td align="center" valign="middle">{{ group.description}}</td>
+                                 </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                        </td>
+                        <td width="5" background="/media/images/table/table_r.gif"></td>
+                      </tr>
+                      <tr>
+                        <td width="5" height="28" background="/media/images/table/table_bl.gif"></td>
+                        <td background="/media/images/table/table_bc.gif" height="28">
+                        	<div class="div_page">
+									<div class="total">共有 <span>{{num_groups}}</span> 条记录，<span class="current">当前第 <b>
+{% if groups_list %}
+{{groups_list.number}}/{{groups_list.paginator.num_pages}}
+{% else%}
+1/1
+{% endif %}
+</b> 页 </span></div>
+ {% if not page_num == 1 %}              
+                <div class="bn_bn">
+{% if groups_list %}
+  {% ifequal groups_list.number 1 %}
+	<span class="color_a">首页</a></span>
+  {% else %}
+    <span class="color_a"><a href="?page=1">首页</a></span>
+  {% endifequal %}
+{% endif %}
+
+{% if groups_list.has_previous %}
+<a href="?page={{ groups_list.previous_page_number }}">上一页</a>
+{% endif %}
+
+<span>
+{% for p in page_range %}
+  {% if groups_list %}
+	  {% ifequal p groups_list.number %}
+	   <span> {{ p }} </span>
+	  {% else %}
+	    <a href="?page={{ p }}" title="第{{ p }}页">{{p}}</a>
+	  {% endifequal %}
+  {% else %}
+          <span> {{ p }} </span>
+  {% endif %}
+{% endfor %}
+</span>
+
+{% if groups_list.has_next %}
+   <a href="?page={{ groups_list.next_page_number }}">下一页</a>
+   <a href="?page={{groups_list.paginator.num_pages}}">尾页</a>
+{% else%}
+   <span class="color_a">尾页&nbsp;</a></span>   
+{% endif %}
+
+{% if groups_list %}
+第<input name="goto" id="goto" class="input" type="text" style="ime-mode:Disabled" onkeydown=" return goto_page(event)"/>页<input type="button" class="switch_bn" value="转到"  name="turn_page" id="turn_page" onclick="javascript:GoPage('goto',{{ groups_list.paginator.num_pages }},'/groups/')"/>
+{% else %}
+到第<input name="goto" id="goto" class="input" type="text" style="ime-mode:Disabled" onkeydown=" return goto_page(event)"/>页<input type="button" class="switch_bn" value="转到" name="turn_page" id="turn_page"  onclick="javascript:GoPage('goto',1,'/groups/')"/>
+{% endif %}
+</span>
+		</div>
+		{% endif %}
+
+                                <div class="clear"></div>
+
+                            </div>
+                        </td>
+                        <td width="5" background="/media/images/table/table_br.gif">&nbsp;</td>
+                      </tr>
+                    </table>
+                </div>
+                
+            </div>
+            
+        </div>
+{% endblock %}

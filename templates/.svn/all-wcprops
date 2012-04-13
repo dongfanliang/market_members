@@ -1,0 +1,323 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/cloud-managersystem/!svn/ver/1080/trunk/nfs-cloud-manager/templates
+END
+node_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cloud-managersystem/!svn/ver/446/trunk/nfs-cloud-manager/templates/node_list.html
+END
+del_group.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cloud-managersystem/!svn/ver/213/trunk/nfs-cloud-manager/templates/del_group.html
+END
+usr_new_successful.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/cloud-managersystem/!svn/ver/703/trunk/nfs-cloud-manager/templates/usr_new_successful.html
+END
+zone_info_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/cloud-managersystem/!svn/ver/939/trunk/nfs-cloud-manager/templates/zone_info_list.html
+END
+usr_new.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/cloud-managersystem/!svn/ver/786/trunk/nfs-cloud-manager/templates/usr_new.html
+END
+usr_info.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/cloud-managersystem/!svn/ver/783/trunk/nfs-cloud-manager/templates/usr_info.html
+END
+zone_info.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cloud-managersystem/!svn/ver/901/trunk/nfs-cloud-manager/templates/zone_info.html
+END
+keypairs.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/cloud-managersystem/!svn/ver/713/trunk/nfs-cloud-manager/templates/keypairs.html
+END
+group_permissions.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/cloud-managersystem/!svn/ver/212/trunk/nfs-cloud-manager/templates/group_permissions.html
+END
+security_group_details.html
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/cloud-managersystem/!svn/ver/759/trunk/nfs-cloud-manager/templates/security_group_details.html
+END
+error.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cloud-managersystem/!svn/ver/864/trunk/nfs-cloud-manager/templates/error.html
+END
+instance_move.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/cloud-managersystem/!svn/ver/937/trunk/nfs-cloud-manager/templates/instance_move.html
+END
+type_new.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/cloud-managersystem/!svn/ver/435/trunk/nfs-cloud-manager/templates/type_new.html
+END
+usr_passwd.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/cloud-managersystem/!svn/ver/1009/trunk/nfs-cloud-manager/templates/usr_passwd.html
+END
+keypair_download.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/cloud-managersystem/!svn/ver/713/trunk/nfs-cloud-manager/templates/keypair_download.html
+END
+permission_details.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/cloud-managersystem/!svn/ver/633/trunk/nfs-cloud-manager/templates/permission_details.html
+END
+image_info.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/cloud-managersystem/!svn/ver/907/trunk/nfs-cloud-manager/templates/image_info.html
+END
+volume_expan.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/cloud-managersystem/!svn/ver/959/trunk/nfs-cloud-manager/templates/volume_expan.html
+END
+type_delete.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/cloud-managersystem/!svn/ver/374/trunk/nfs-cloud-manager/templates/type_delete.html
+END
+usr_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/cloud-managersystem/!svn/ver/921/trunk/nfs-cloud-manager/templates/usr_list.html
+END
+zone_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cloud-managersystem/!svn/ver/446/trunk/nfs-cloud-manager/templates/zone_list.html
+END
+base.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/cloud-managersystem/!svn/ver/982/trunk/nfs-cloud-manager/templates/base.html
+END
+image_logout.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/cloud-managersystem/!svn/ver/427/trunk/nfs-cloud-manager/templates/image_logout.html
+END
+del_permission.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/cloud-managersystem/!svn/ver/212/trunk/nfs-cloud-manager/templates/del_permission.html
+END
+type_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cloud-managersystem/!svn/ver/839/trunk/nfs-cloud-manager/templates/type_list.html
+END
+image_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/cloud-managersystem/!svn/ver/911/trunk/nfs-cloud-manager/templates/image_list.html
+END
+instance_info.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/cloud-managersystem/!svn/ver/851/trunk/nfs-cloud-manager/templates/instance_info.html
+END
+usr_modify.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/cloud-managersystem/!svn/ver/778/trunk/nfs-cloud-manager/templates/usr_modify.html
+END
+property.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/cloud-managersystem/!svn/ver/995/trunk/nfs-cloud-manager/templates/property.html
+END
+create_new_permission.html
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/cloud-managersystem/!svn/ver/776/trunk/nfs-cloud-manager/templates/create_new_permission.html
+END
+image_upload.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/cloud-managersystem/!svn/ver/791/trunk/nfs-cloud-manager/templates/image_upload.html
+END
+image_register.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/cloud-managersystem/!svn/ver/1007/trunk/nfs-cloud-manager/templates/image_register.html
+END
+type_edit.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cloud-managersystem/!svn/ver/937/trunk/nfs-cloud-manager/templates/type_edit.html
+END
+volume_snapshot.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/cloud-managersystem/!svn/ver/1029/trunk/nfs-cloud-manager/templates/volume_snapshot.html
+END
+admin_fir.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cloud-managersystem/!svn/ver/785/trunk/nfs-cloud-manager/templates/admin_fir.html
+END
+node_conf.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cloud-managersystem/!svn/ver/446/trunk/nfs-cloud-manager/templates/node_conf.html
+END
+volume_create.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/cloud-managersystem/!svn/ver/1029/trunk/nfs-cloud-manager/templates/volume_create.html
+END
+ippool_associate.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/cloud-managersystem/!svn/ver/1025/trunk/nfs-cloud-manager/templates/ippool_associate.html
+END
+your_groups.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/cloud-managersystem/!svn/ver/739/trunk/nfs-cloud-manager/templates/your_groups.html
+END
+base_site.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cloud-managersystem/!svn/ver/131/trunk/nfs-cloud-manager/templates/base_site.html
+END
+instance_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/cloud-managersystem/!svn/ver/1080/trunk/nfs-cloud-manager/templates/instance_list.html
+END
+image_start.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/cloud-managersystem/!svn/ver/954/trunk/nfs-cloud-manager/templates/image_start.html
+END
+node_info.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cloud-managersystem/!svn/ver/938/trunk/nfs-cloud-manager/templates/node_info.html
+END
+ippool.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/cloud-managersystem/!svn/ver/942/trunk/nfs-cloud-manager/templates/ippool.html
+END
+create_security_group.html
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/cloud-managersystem/!svn/ver/640/trunk/nfs-cloud-manager/templates/create_security_group.html
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cloud-managersystem/!svn/ver/735/trunk/nfs-cloud-manager/templates/index.html
+END
+volume.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/cloud-managersystem/!svn/ver/971/trunk/nfs-cloud-manager/templates/volume.html
+END
+login.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/cloud-managersystem/!svn/ver/872/trunk/nfs-cloud-manager/templates/login.html
+END
+get_psw.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/cloud-managersystem/!svn/ver/789/trunk/nfs-cloud-manager/templates/get_psw.html
+END
+volume_attchinto_instance.html
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/cloud-managersystem/!svn/ver/1029/trunk/nfs-cloud-manager/templates/volume_attchinto_instance.html
+END
+del_node.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/cloud-managersystem/!svn/ver/759/trunk/nfs-cloud-manager/templates/del_node.html
+END
+volume_snapshot_create.html
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/cloud-managersystem/!svn/ver/746/trunk/nfs-cloud-manager/templates/volume_snapshot_create.html
+END
+keypairs_create.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/cloud-managersystem/!svn/ver/640/trunk/nfs-cloud-manager/templates/keypairs_create.html
+END

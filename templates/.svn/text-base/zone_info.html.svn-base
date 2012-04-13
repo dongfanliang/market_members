@@ -1,0 +1,104 @@
+{% extends "base_site.html" %}
+{% block content %}
+
+<div class="conment">
+        	           <div class="conment-title">
+            
+            	<table border="0" cellspacing="0" cellpadding="0">
+					 <tr> 
+					<td class="refresh"><a href="/infozone_{{zone_name}}/">刷新</a></td>
+            </tr>
+                </table>            	
+            </div>
+<div class="conment-div">
+                <div class="div">
+                	
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        					
+								<center><h3>{{zone_name}}区域的资源使用情况</h3></center>
+							
+							<tr>
+                        <td width="5" background="images/table/table_l.gif"></td>
+                        <td>
+                        	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">                            
+										<thead>
+                                   
+                                    <th width="10%"><span>资源名称</span></th>
+                                    <th width="10%"><span>CPU个数（个）</span></th>
+                                    <th width="10%"><span>内存（M）</span></th>
+                                    <th width="10%" ><span>硬盘(G)</span></th>
+												<th width="10%" ><span>总资源数</span></th>
+												<th width="10%" ><span>剩余资源数</span></th>
+                              <tbody>
+                                  {% for vmtype in vmtypes %}
+                                  <tr class="bg-color-a">
+                                    <td class="txc">{{ vmtype.type_name }}</td>
+                                    <td class="txc">
+														{{ vmtype.type_core }}
+														{% if vmtype.type_core.errors%}
+														{% for error in vmtype.type_core.errors %}
+														<span class="error">{{error}}</span>
+														{% endfor %}
+														{% endif %}
+												</td>
+				    							<td class="txc">
+														{{ vmtype.type_mem }}
+														{% if vmtype.type_mem.errors%}
+														{% for error in vmtype.type_mem.errors %}
+														<span class="error">{{error}}</span>
+														{% endfor %}
+														{% endif %}
+												</td> 
+                                    <td class="txc">
+														{{ vmtype.type_disk }}
+														{% if vmtype.type_disk.errors%}
+														{% for error in vmtype.type_disk.errors %}
+														<span class="error">{{error}}</span>
+														{% endfor %}
+														{% endif %}
+												</td>
+												<td class="txc">
+														{{ vmtype.total }}
+														{% if vmtype.total.errors%}
+														{% for error in vmtype.total.errors %}
+														<span class="error">{{error}}</span>
+														{% endfor %}
+														{% endif %}
+												</td>
+												<td class="txc">
+														{{ vmtype.free }}
+														{% if vmtype.free.errors%}
+														{% for error in vmtype.free.errors %}
+														<span class="error">{{error}}</span>
+														{% endfor %}
+														{% endif %}
+												</td>
+                                  </tr>
+                                  {% endfor %}
+                              </tbody>
+                          </table>
+                        </td>
+                        <td width="5" background="images/table/table_r.gif"></td>
+                      </tr> 
+                      <tr>
+                        <td width="5" height="28" background="images/table/table_bl.gif"></td>
+                        <td background="images/table/table_bc.gif" height="28">
+                        	<div class="div_page">
+                           
+                                <div class="bn_bn">
+								  <button type="back" onclick="window.location='/zoneinfo'" class="switch_bn">返回</button>
+                                </div>
+                            </div>
+                        </td>
+                        <td width="5" background="images/table/table_br.gif">&nbsp;</td>
+                      </tr>
+                    </table>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer">信息显示</div>
+</div>
+{% endblock %}

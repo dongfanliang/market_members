@@ -1,0 +1,25 @@
+{% extends "base_site.html" %}
+{% block content %}
+            <div class="conment-div">
+  <div style="margin: 0pt; z-index: 1002; position: absolute; left: 375px; top: 153px; width: 450px;" class="nfschinaDialog">
+    <div class="box">
+      <div class="box-title">
+        <h2 class="titleH2">&nbsp;</h2>
+      </div>
+      <div class="box-nr">
+        <p>Del permission: Revoke selected permission(s) on group default?</p>
+        <div class="Botton">
+          <input name="button" type="button" class="btn" value="确定" />
+          <input name="button" type="button" class="btn" value="返回" />
+        </div>
+      </div>
+    </div>
+    <div class="box-b">
+        	<div class="box-b-l"></div>
+            <div class="box-b-r"></div>
+    </div>
+  </div>
+                
+       </div>
+
+{% endblock %}

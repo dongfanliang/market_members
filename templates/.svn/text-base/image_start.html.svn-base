@@ -1,0 +1,193 @@
+{% extends "base_site.html" %}
+{% block content %}
+<script type="text/javascript">
+window.onload = function(){
+
+		   MainSel  = document.getElementById("select1");
+		      SlaveSel = document.getElementById("select2");
+
+}
+function get_groups()
+{
+	GroupSel = document.getElementById("select2");	
+	for(i=0;i<GroupSel.length;i++)
+	{
+      GroupSel.options[i].selected = true;
+	}
+	
+}
+function get_alert()
+{
+       alert("没有资源，禁止启动！");
+}
+</script>
+			<div class="conment-title" >镜像启动配置</div>
+				<div class="conment-div">
+					<div class="div">
+						<form id="startform" action="" method="POST"> {% csrf_token %}
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td width="5" background="../media/images/table/table_l.gif"></td>
+									<td>
+										<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">										
+									<tbody>
+										<tr>
+											<th width="15%">EMI ID：</th>
+											<td>
+											<input name="emi" readonly="readonly" value="{{ images.id }}" /input>
+											</td>
+										</tr>
+								<!--		<tr class="bg-color-a">
+											<td align="center" valign="middle">AMI Tag:</td>
+											<td><input type="text" name="" /></td>
+										</tr> -->
+										<tr>
+											<th>EMI Manifest：</th>
+											<td><input name="manifest" readonly="readonly" value="{{ images.location }}" /input></td>
+											
+										</tr>
+										<tr>
+											<th>EKI ID：</th>
+											<td>
+											<input  name="eki" readonly="readonly" value="{{ images.kernel_id }}" /input>
+											</td>
+										</tr>
+										<tr>
+											<th>ERI ID：</th>
+											<td>
+											<input name="eri" readonly="readonly" value="{{ images.ramdisk_id }}" /input>
+											</td>
+										</tr>
+										<tr>
+                                                                                      	<th>可用区域：</td>
+											<td><select name="zonename" id="zonename" >
+                                                                                        {% for zone in zones %}
+                                                                                                <option value="{{zone}}">{{zone}}</option>
+                                                                                        {% endfor %}
+                                                                                        </td>
+										</tr>
+										<tr>
+											<th>资源类型：</th>
+											<td><select name="vm_type">
+												{% for vmtype in vmtypes_list %}
+													<option value="{{ vmtype.type_name }}">{{ vmtype.type_name }}</option>
+												{% endfor %}
+											</select>
+											   {% if not vmtypes_list %}
+											   <span class="error">  *尚无资源类型或者尚无可用的剩余资源</span>
+											   {% endif %}
+											</td>
+										</tr>
+									<!--	<tr class="bg-color-b">
+											<td><div class="th_div">实例个数-Min:</div></td>
+											<td><input type="text"/></td>
+										</tr>
+										<tr class="bg-color-a">
+											<td><div class="th_div">实例个数-Max:</div></td>
+											<td><input type="text"/></td>
+										</tr>
+										<tr class="bg-color-a">
+											<td><div class="th_div">New Instance(s) Tag :</div></td>
+											<td><input type="text"/></td>
+										</tr> -->
+										<tr>
+											<th>KeyPair：</th>
+											<td><select name="keyname" id="keyname" >
+												{% for key in key_list %}
+													<option value="{{key.name}}">{{key.name}}</option>
+												{% endfor %}	
+												 <option value="_Nothingkey_">无</option>
+											</select></td>
+										</tr>
+										
+							<!--			<tr class="bg-color-a">
+											<td colspan="2"><div class="th_div"><strong>Virtual Private Cloud </strong></div></td>
+										</tr>
+										<tr class="bg-color-a">
+											<td><div class="th_div">Launch in VPC :</div></td>
+											<td><label>
+													<input type="radio" name="radiobutton" value="radiobutton" />
+											</label></td>
+										</tr>  -->
+								<!--		<tr class="bg-color-a">
+											<td><div class="th_div">VPC:</div></td>
+											<td></td>
+										</tr>
+										<tr class="bg-color-a">
+											<td><div class="th_div">Subnet:</div></td>
+											<td></td>
+										</tr>
+										<tr class="bg-color-a">
+											<td><div class="th_div">IP Address :</div></td>
+											<td></td>
+										</tr>  -->
+									</tbody>
+							</table>
+						</td>
+						<td width="5"></td>
+					</tr>
+					<tr>
+						<td width="5" height="28"></td>
+							<td>
+								<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+								<thead>
+									<th style="text-align:left;">Security Groups</th>
+								</thead>
+								<tbody>
+									<tr >
+										<td>
+										<p>Available Groups</p>
+
+										<div style="width:160px; float:left; margin:10px 0px;">
+												<select id="select1" name="select1" size="5" multiple style="width: 150px">
+												{% for group in groups %}
+													<option value="{{ group }}">{{ group }}</option>
+												{% endfor %}
+												</select> 
+										</div>
+										<div style="width:65px; float:left; margin:10px 0px;">
+											<input name="doadd" type="button" class="switch_bn" value="添加>" onclick="DoAdd()"><br>
+											<input name="dodel" type="button" class="switch_bn" value="<删除" onclick="DoDel()">
+										</div>
+									 <div style="width:160px; float:left; margin:10px 0px 10px;">
+												<select id="select2" name="select2" size="5" multiple style="width: 150px">
+												</select>
+										</div>	
+
+											
+										<!--	<br>
+											<div>Launch in
+												<textarea name="textarea2">{{ form.launchIn }}</textarea>
+											</div>
+										</td>
+									</tr>
+									<tr class="bg-color-a">
+										<td><div class="th_div">User DATA :<textarea name="textarea">{{ form.userData }}</textarea></div></td>
+									</tr>  -->
+								</tbody>
+						</table></td>
+						<td width="5" background="../media/images/table/table_br.gif">&nbsp;</td></tr>
+							<tr>
+								<td width="5" height="28" background="../media/images/table/table_bl.gif"></td>
+								<td background="../media/images/table/table_bc.gif" height="28">
+								<div class="div_page">
+									<div align="center" class="bn_bn">
+									<!--	<button type="submit" onclick="" class="switch_bn">启动</button>  -->
+									<!--	<button onclick="javascript:history.go(-1);" class="switch_bn">取消</button> -->
+                                                                          {% if not vmtypes_list %}
+                                                                          <input name="button" type="button" class="switch_bn" onclick="get_alert()" value="启动" />                                                                              {% else %}
+                                                                          <input name="button" type="submit" class="switch_bn" onclick="get_groups()" value="启动" />  
+                                                                          {% endif %}     
+                                                                          <input name="button" onclick="javascript:history.go(-2);" type="button" class="switch_bn" value="取消" />
+									</div>
+								</div>
+								</td>
+								<td width="5" background="../media/images/table/table_br.gif">&nbsp;</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

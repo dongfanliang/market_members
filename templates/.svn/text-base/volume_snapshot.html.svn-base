@@ -1,0 +1,113 @@
+{% extends "base_site.html" %}
+{% block content %}
+        	<div class="conment-title">
+            	<table border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="refresh"><a href="/volumesnapshot">刷新</a></td>
+                    <td class="delete"><a href="#" onclick="del_Snapshot('list_form')">删除</a></td>
+                  </tr>
+                </table>            	
+            </div>
+            
+            <div class="conment-div">
+            	
+                <div class="div">
+<form action="" method="post" id="list_form">                	
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="5" background="/media/images/table/table_l.gif"></td>
+                        <td>
+                        	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">                            
+                              <thead>
+                                    <tr><th width="4%"><div class="th_div"><span><input name="checkall" id="checkall" type="checkbox" value="" class="a_input" onclick="CheckTitle('checkbox', 'checkall')"/></span><span class="rt"></span></div></th>
+                                    <th width="10%">SNAP ID </th>
+                                    <th width="10%">VOL ID </th>
+                                    <th width="10%" >状态</th>
+                                    <th width="10%" >创建时间</th>
+                                    <th width="10%" >空间大小</th>
+												<th width="8%" >操作</th>
+                              <tbody>
+                                  {% for snapshot in snapshots.object_list %}
+                                  <tr class="bg-color-a">
+                                    <td class="txc"><input name="checkbox" type="checkbox" value="{{ snapshot.id }}" id="{{ snapshot.status }}" onclick="CheckItem('checkbox', 'checkall')"/></td>
+                                    <td class="txc">{{ snapshot.id }}</td>
+                                    <td class="txc">{{ snapshot.volume_id }}</td>
+                                    <td class="txc">{{ snapshot.status }}</td>
+                                    <td class="txc">{{ snapshot.start_time}}</td>
+                                    <td class="txc">{{ snapshot.progress }}</td>
+												<td class="txc"><a href="/volumecreate/?ss_id={{snapshot.id}}">创建Volume</a></td>
+                                  </tr>
+                                  {% endfor %}
+                              </tbody>
+                            </table>
+                        </td>
+                        <td width="5" background="/media/images/table/table_r.gif"></td>
+                      </tr>
+                      <tr>
+                        <td width="5" height="28" background="/media/images/table/table_bl.gif"></td>
+                        <td background="/media/images/table/table_bc.gif" height="28">
+                        	<div class="div_page">
+                            	<div class="total">共有 <span>{{ num_snapshots }}</span> 条记录，<span class="current">当前第 <b>
+{% if snapshots %}
+{{snapshots.number}}/{{snapshots.paginator.num_pages}}
+{% else%}
+1/1
+{% endif %}
+</b> 页 </span></div>
+ {% if not page_num == 1%}              
+                <div class="bn_bn">
+{% if snapshots %}
+  {% ifequal snapshots.number 1 %}
+	<span class="color_a">首页</a></span>
+  {% else %}
+    <span class="color_a"><a href="?page=1">首页</a></span>
+  {% endifequal %}
+{% endif %}
+
+{% if snapshots.has_previous %}
+<a href="?page={{ snapshots.previous_page_number }}">上一页</a>
+{% endif %}
+
+<span>
+{% for p in page_range %}
+  {% if snapshots %}
+	  {% ifequal p snapshots.number %}
+	   <span> {{ p }} </span>
+	  {% else %}
+	    <a href="?page={{ p }}" title="第{{ p }}页">{{p}}</a>
+	  {% endifequal %}
+  {% else %}
+          <span> {{ p }} </span>
+  {% endif %}
+{% endfor %}
+</span>
+
+{% if snapshots.has_next %}
+   <a href="?page={{ snapshots.next_page_number }}">下一页</a>
+   <a href="?page={{snapshots.paginator.num_pages}}">尾页</a>
+{% else%}
+   <span class="color_a">尾页&nbsp;</a></span>   
+{% endif %}
+
+
+{% if snapshots %}
+第<input name="goto" id="goto" class="input" type="text" style="ime-mode:Disabled"/>页<input type="button" class="switch_bn" value="转到" onclick="javascript:GoPage('goto',{{ snapshots.paginator.num_pages }},'/volumesnapshot/')"/>
+{% else %}
+到第<input name="goto" id="goto" class="input" type="text" style="ime-mode:Disabled"/>页<input type="button" class="switch_bn" value="转到" onclick="javascript:GoPage('goto',1,'/volumesnapshot/')"/>
+{% endif %}
+</span>
+		</div>
+		{% endif %}
+
+                </div>
+                            	<div class="clear"></div>
+                            </div>
+                        </td>
+                        <td width="5" background="/media/images/table/table_br.gif">&nbsp;</td>
+                      </tr>
+                    </table>                  
+</form>
+                </div>                
+            </div>            
+        </div>
+{% endblock %}

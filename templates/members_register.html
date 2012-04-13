@@ -1,0 +1,29 @@
+{% extends "base_site.html" %}
+{% block content %}
+<div class="conment-title">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+                        <td>注册会员</td>
+					</tr>
+				</table>
+</div>
+<div class="conment-div">
+<form id="register" method="post" action="{% url memregister %}">{% csrf_token %}
+<table class="tab">
+{% for form in forms%}
+<tr>
+    <td>{{form.label}}</td>
+    <td>{{form}}{{form.help_text}}</td>
+    {% for error in form.errors%}
+        <td><font color=ff0000>{{error}}</font></td>
+    {%endfor%}
+</tr>
+{%endfor%}
+</table>
+<div style="margin-left:150px;margin-top:10px;">
+<input type="submit" value="保　存" class="btn"  />
+</div>
+</form>
+</div>
+{% endblock %} 
+   

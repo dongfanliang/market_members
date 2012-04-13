@@ -1,0 +1,39 @@
+{% extends "base_site.html" %}
+{% block content %}
+
+<div class="conment-title">关联虚拟机</div>
+	
+<div class="conment-div">
+    <div class="div">
+        <p style="line-height:25px; padding-left:10px; margin-bottom:10px;">选择与{{ ip }}关联的虚拟机 :</p>
+			<form id='associateform' method="post">{% csrf_token %}			
+			  <table align="center" width="100%"  cellspacing="0" cellpadding="0" class="tab">
+			    <tr class="bg-color-a">
+			    	<th width="15%" align="center" valign="middle">IP：</th>
+			    	<td>{{ ip }}</td>
+						<input name="selectip" type="hidden" value="{{ ip }}"/>
+					</tr>
+                                  <tr class="bg-color-b">
+					<th><div class="th_div">InstanceID：</div></th>
+					<td><select name="instanceId" id="instanceId" >
+					{% for instance in ins_list %}
+						{% for ins in instance.instances %}
+							<option value="{{ins.id}} {{ins.state}}">{{ins.id}}</option>
+						{% endfor %}
+					{% endfor %}
+					</select></td>
+				</tr>
+				</table>
+				<div class="Botton">
+          <input name="button" type="button" class="switch_bn" onclick="ippool_associate_state('associateform')" value="确定" />
+		  <input name="button" onclick="javascript:history.go(-1);" type="button" class="switch_bn" value="返回" />
+			
+        </div>
+				</form>
+      </div>
+    </div>    
+</div>
+
+    <div class="footer">信息显示</div>
+</div>
+{% endblock %}

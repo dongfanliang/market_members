@@ -1,0 +1,32 @@
+function CheckTitle(myCheck, checkId)
+{
+    var checkAll = document.getElementsByName(myCheck);
+    var checkTitle = document.getElementById(checkId);
+    for (var i = 0; i < checkAll.length; i++)
+        checkAll[i].checked = checkTitle.checked;
+}
+
+function deletegroup(id, formId, url, user)
+{
+	var group = document.getElementsByName(id);
+	for (var i = 0; i < group.length; i++)
+	{
+		if (group[i].checked)
+		{
+			var groupFields = group[i].value.split(":");
+			if (groupFields[1] == user)
+			{
+				if (confirm("确定要删除吗？"))
+				{
+					var myForm = document.getElementById(formId);
+					myForm.action = url;
+					myForm.submit();
+				}
+			}
+			else
+				alert("不能删除其他用户的安全组！");
+			return;
+		}
+	}
+	alert("请选择要删除的内容！");
+}

@@ -1,0 +1,28 @@
+{% extends "base_site.html" %}
+{% block content %}
+<div class="conment">
+  <div style="margin: 0pt; z-index: 1002; position: absolute; left: 375px; top: 153px; width: 450px;" class="nfschinaDialog">
+    <div class="box">
+      <div class="box-title">
+        <h2 class="titleH2">&nbsp;</h2>
+      </div>
+      <form action="/deletetype/" method="POST">
+			<div class="box-nr">
+        <p>是否确定删除？</p>
+        <div class="Botton">
+          <input name="hid" type="hidden" value="{{ hidname }}"/>
+				  <input name="del_bt"  type="submit" class="btn" value="确定" />
+          <input name="button" onclick="javascript:history.go(-1);" type="button" class="btn" value="返回" />
+        </div>
+      </div>
+    </div>
+    <div class="box-b">
+        	<div class="box-b-l"></div>
+            <div class="box-b-r"></div>
+    </div>
+  </div>
+</div>
+    </div>
+    <div class="footer">信息显示</div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base_site.html" %}
+{% block content %}
+<div class="conment">
+        	           
+            <div class="conment-div">
+            	
+                <div class="div">
+                	
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="5" background="images/table/table_l.gif"></td>
+                        <td>
+                        	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">                            
+                              <thead>
+                                    <tr>
+                                      <th width="47%">物理节点名称（主机名）<span></span></th>
+                                      <th width="53%">IP地址</th>
+                              <tbody>
+                                  <tr class="bg-color-a">
+                                    <td><input type="text" name="textfield" /></td>
+                                    <td><input type="text" name="textfield2" /></td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                        </td>
+                        <td width="5" background="images/table/table_r.gif"></td>
+                      </tr> 
+                      <tr>
+                        <td width="5" height="28" background="images/table/table_bl.gif"></td>
+                        <td background="images/table/table_bc.gif" height="28">
+                        	<div class="div_page">
+                           
+                                <div class="bn_bn">
+								  <button type="submit" onclick="" class="switch_bn">确定</button>
+								  <button type="back" onclick="window.location='/zoneinfo'" class="switch_bn">返回</button>
+                                </div>
+                            </div>
+                        </td>
+                        <td width="5" background="images/table/table_br.gif">&nbsp;</td>
+                      </tr>
+                    </table>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="footer">信息显示</div>
+</div>
+{% endblock %}

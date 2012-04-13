@@ -1,0 +1,49 @@
+{% extends "base_site.html" %}
+{% block content %}
+				<div class="conment-title">迁移虚拟机</div>
+				
+            <div class="conment-div">
+            	
+                <div class="div">
+			
+			<form id="instance_move" method="POST"> {% csrf_token %}
+			
+                        	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">                           
+                              
+                              <tbody>
+       			<tr>
+        			  <th width="15%">虚拟机ID：</th>
+        			  <td>
+						{{ instance }} 
+					  </td>
+					</tr>
+               <tr>
+        			  <th width="15%">目标机IP：</th>
+        			  <td>
+						<select name="desIp" >
+{% for ip in ip_list %}
+							<option value="{{ ip }}">{{ ip }}</option>
+{% endfor %}
+						</select> 
+					  </td>
+					</tr>
+			      </tbody>
+                            </table>
+                        	<div class="div_page">
+                           
+                                <div class="bn_bn">
+                                  <button type="submit" onclick="" class="switch_bn">确定</button>
+				  <button type="button" onclick="window.location.href='/instance/'" class="switch_bn">取消</button>
+                                </div>
+                            </div>
+                        </form>
+                    
+                    
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+{% endblock %}
+

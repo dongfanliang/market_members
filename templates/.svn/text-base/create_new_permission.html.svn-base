@@ -1,0 +1,55 @@
+{% extends "base_site.html" %}
+{% block content %}
+				<div class="conment-title">Great New Permissions: Add New Permission for Security Group:default</div>
+            <div class="conment-div">
+            	
+                <div class="div">
+			<form action="" method="post">                	
+                    
+                        	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab"> 
+                              <tbody>
+				 <tr>
+         			 <th width="15%">安全组名：</th>
+         			 <td> <select size="1" id="group_name" name="group_name">
+              	{% for group in groups_list %}
+                    {% if group.owner_id == user %}
+         				<option value="{{ group.name }}">{{ group.name }}</option>
+					{% endif %}
+					{% endfor %}
+					{% if not groups_list %}
+					<option selected="selected" value="none">无数据</option>			
+					{% endif %}
+								</select></td></tr>
+
+				{% for field in form %}
+                                <tr>
+                                <th>{{ field.label }}：</th>
+                                <td>{{ field }}  {{ field.help_text }}
+								{% for error in field.errors %} 
+							    <span class="error"> {{error}}</span>
+								{% endfor %}
+										</td>
+								</tr>
+                                {% endfor %}
+
+                              </tbody>
+                            </table>
+                        
+                        	<div class="div_page">
+                           
+                                <div class="bn_bn">
+                                  <button type="submit" onclick="" class="switch_bn">确定</button>
+								  <button type="button" onclick="window.location='/rules/'" class="switch_bn">取消</button>
+                                </div>
+                            </div>
+                        
+
+                    
+                    
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+{% endblock %}

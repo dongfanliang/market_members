@@ -1,0 +1,57 @@
+{% extends "base_site.html" %}
+{% block content %}
+   	  <div class="conment-title">在实例中绑定volume</div>
+            
+            <div class="conment-div">
+            	
+                <div class="div">
+                	
+<form action="" method="post" onsubmit="return validate_VolumeAttach(this);">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                              <tbody>
+       <tr>
+	<th width="15%">Volume ID：</th>
+		<td><input type="text" readonly value = "{{volume.id}}" id="volume_id" name= "volume_id"/></td></tr>
+      <tr>
+        <th width="15%">大小(GB)：</th>
+                <td>{{volume.size}}</td></tr>
+{% for field in form %}
+       <tr>
+        <th width="15%">{{ field.label }}：</th>
+        <td>{{ field }}<span class="error">*</span>  {{field.help_text}}
+		{% if field.errors %}
+	    {% for error in field.errors %}
+	
+		<span class="error">{{ error }}</span>
+		{% endfor%}
+		{% endif%}
+		</td></tr>
+{% endfor %}
+<!--      <tr>
+         <th>快照ID：</th>
+         <td><select size="1" id="snapshot_id" name="snapshot_id">
+              <option selected="selected" value="none">请选择</option>
+{% for snapshot in snapshots %}
+         <option value="{{ snapshot.id }}">{{ snapshot.id }}</option>
+{% endfor %}</select></td></tr>
+      <tr>-->
+         <th>实例ID：</th>
+         <td><select size="1" name="instance_id" id="instance_id">
+<option value="none" selected="selected">请选择</option>
+{% for res in instances %}
+{% for instance in res.instances %}
+{% if instance.state == 'running' %}
+<option value="{{ instance.id }}">{{ instance.id }}, {{ instance.state }}</option>
+{% endif %}
+{% endfor %}
+{% endfor %}</select><span class="error">*</span></td></tr>
+                            </table>
+                                <div class="div_page">
+
+                                <div class="bn_bn"><button type="submit" onclick="" class="switch_bn">提交</button><button type="button" onclick="window.location='/volume/'" class="switch_bn">返回</button></div>
+                            </div>
+</form>
+                </div>
+            </div>
+      </div>
+{% endblock %}

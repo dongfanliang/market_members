@@ -1,0 +1,60 @@
+{% extends "base_site.html" %} 
+{% block content %}
+<div class="conment-title">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td class="add"><a href="{% url memregister %}">注册会员</a></td>
+						<td class="delet"><a href="javascript:del_members('membersform','{% url delmembers%}');">注销会员</a></td>
+					</tr>
+				</table>
+</div>
+<div class="conment-div">
+<div style="display:block" id="search">
+<br>
+<font style="margin-left:20px;" color="ff0000">*注: 会员等级, A代表普通会员, B代表银卡, C代表金卡.</font>
+<table align="right">
+    <tr>
+        <td><img src="/media/images/up.gif"></td>
+        <td>
+           <input type="text" style="width:145px;font-size:10pt;" value="会员卡号",  name="list_search" tabindex="2" />
+        </td>   
+        <td>
+           <input type="button" value="搜索"/>
+        </td>
+    </tr>
+</table>
+<br>
+</div>
+  <div class="div">
+     <form id = 'membersform' action="" method="POST"> {% csrf_token %}
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td width="5" background="/media/images/table/table_l.gif"></td>
+               <td>
+                   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+                       <thead>
+                           <tr><th width="4%"><input name="cb1" type="checkbox" id="checkall" onclick="CheckTitle('cb', 'checkall')"></th>
+                               <th width="10%"><span>会员卡号</span></th>
+                               <th width="10%"><span>姓名</span></th>
+                               <th width="10%"><span>电话号</span></th>
+                               <th width="10%"><span>会员等级</span></th>
+                               <th width="10%"><span>注册时间</span></th>
+                           </tr>
+                       </thead>
+                       {% for member in members %}
+                       <tbody>
+                        <td class="txc"><input type="checkbox" name="cb" id="{{ member.id }}" value="{{ member.id }}" onclick="check('cb', 'checkall')"/></td>
+                               <td class="txc">{{member.member_card_id}}</td>
+                               <td class="txc">{{member.member_name}}</td>
+                               <td class="txc">{{member.member_phone}}</td>
+                               <td class="txc">{{member.member_rank}}</td>
+                               <td class="txc">{{member.member_create_time}}</td>
+                       </tbody>
+                        {% endfor %}
+
+            </tr>
+        </table>
+     </form>
+  </div>
+</div>
+{% endblock %} 

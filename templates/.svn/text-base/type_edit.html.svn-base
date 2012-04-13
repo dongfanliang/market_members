@@ -1,0 +1,46 @@
+{% extends "base_site.html" %}
+{% block content %}
+<div class="conment">
+   	  <div class="conment-title">编辑资源类型</div>
+           
+            <div class="conment-div">
+            	
+              <div class="div">
+                <form id="editform" method="POST">{% csrf_token %}	
+                    
+                        	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab"> 
+                             <tbody>
+                            		<tr>
+                                    <th width="15%">模板名称：</th>
+												<td><input name="name" type="hidden" value="{{ name }}" />{{ name }}</td>
+                                 </tr>
+                                {% for field in form %}
+              							
+											<tr>
+        			                     <th width="15%">{{ field.label }}：</th>
+        			 							<td>{{ field }}  {{ field.help_text }}
+													{% for error in field.errors %} 
+													    <span class="error"> {{error}}</span>
+													{% endfor %}
+                                        </tr>
+                                  
+											  {% endfor %}
+                              </tbody>
+                            </table>
+                        	<div class="div_page">                           
+                              <div class="bn_bn">
+											<button type="submit" onclick="" class="switch_bn">提交</button>
+											<button type="button" onclick="window.location.href='/typelist/'" class="switch_bn">返回</button>
+										</div>
+                           </div>
+						   <span style="color:red;FONT-SIZE:12px;margin-left:10px;">   注：输入的数据不允许与其他模板的数据完全一样！</span>
+								</form>
+              </div>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer">信息显示</div>
+</div>
+{% endblock %}

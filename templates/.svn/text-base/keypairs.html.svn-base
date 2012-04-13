@@ -1,0 +1,111 @@
+{% extends "base_site.html" %}
+{% block content %}
+		<div class="conment-title">
+            	<table border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="refresh"><a href="/keypairs">刷新</a></td>
+                    <td class="new"><a href="/keypairnew">创建</a></td>
+		    <td class="delete"><a href="#" onclick="deletekeypair('keypairname','formkeypair','/keypairdel/')">删除</a></td>
+                  </tr>
+                </table>            	
+            </div>
+            
+            <div class="conment-div">
+            	
+                <div class="div">
+                	
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="5" background="/media/images/table/table_l.gif"></td>
+                        <td>
+				<form id='formkeypair' action="" method="post"> {% csrf_token %}
+                        	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">                            
+                              <thead>
+				    <tr><th width="4%"><input id="checkall" name="" type="checkbox" value="" class="a_input" onclick="CheckTitle('keypairname','checkall')"/></th>
+                                    <th width="10%"><span>名称</span></th>
+                                    <th width="75%">指纹</th>
+												<th>下载私钥</th>
+                              <tbody>
+                                {% for keypair in keypairs_list.object_list %}
+                                 <tr >
+ 				    <td class="txc"><input name="keypairname" type="checkbox" value="{{keypair.name}}" onclick="CheckItem('keypairname','checkall')"/></td>
+                                    <td align="center" valign="middle">{{ keypair.name}}</td>
+                                    <td align="center" valign="middle">{{ keypair.fingerprint}}</td>
+								    <td align="center" valign="middle"><button  onclick="submit_form('formkeypair','/keypair_{{ keypair.name }}/')"  class="switch_bn">下载</button></td>
+                                 </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                        </td>
+                        <td width="5" background="/media/images/table/table_r.gif"></td>
+                      </tr>
+                      <tr>
+                        <td width="5" height="28" background="/media/images/table/table_bl.gif"></td>
+                        <td background="/media/images/table/table_bc.gif" height="28">
+                        	<div class="div_page">
+									<div class="total">共有 <span>{{num}}</span> 条记录，<span class="current">当前第 <b>
+{% if keypairs_list %}
+{{keypairs_list.number}}/{{keypairs_list.paginator.num_pages}}
+{% else%}
+1/1
+{% endif %}
+</b> 页 </span></div>
+ {% if not page_num == 1%}              
+                <div class="bn_bn">
+{% if keypairs_list %}
+  {% ifequal keypairs_list.number 1 %}
+	<span class="color_a">首页</a></span>
+  {% else %}
+    <span class="color_a"><a href="?page=1">首页</a></span>
+  {% endifequal %}
+{% endif %}
+
+{% if keypairs_list.has_previous %}
+<a href="?page={{ keypairs_list.previous_page_number }}">上一页</a>
+{% endif %}
+
+<span>
+{% for p in page_range %}
+  {% if keypairs_list %}
+	  {% ifequal p keypairs_list.number %}
+	   <span> {{ p }} </span>
+	  {% else %}
+	    <a href="?page={{ p }}" title="第{{ p }}页">{{p}}</a>
+	  {% endifequal %}
+  {% else %}
+          <span> {{ p }} </span>
+  {% endif %}
+{% endfor %}
+</span>
+
+{% if keypairs_list.has_next %}
+   <a href="?page={{ keypairs_list.next_page_number }}">下一页</a>
+   <a href="?page={{keypairs_list.paginator.num_pages}}">尾页</a>
+{% else%}
+   <span class="color_a">尾页&nbsp;</a></span>   
+{% endif %}
+
+
+{% if keypairs_list %}
+第<input name="goto" id="goto" class="input" type="text" style="ime-mode:Disabled" onkeydown=" return goto_page(event)"/>页<input type="button" class="switch_bn" value="转到"  name="turn_page" id="turn_page" onclick="javascript:GoPage('goto',{{ keypairs_list.paginator.num_pages }},'/keypairs/')"/>
+{% else %}
+到第<input name="goto" id="goto" class="input" type="text" style="ime-mode:Disabled" onkeydown=" return goto_page(event)"/>页<input type="button" class="switch_bn" name="turn_page" id="turn_page" value="转到" onclick="javascript:GoPage('goto',1,'/keypairs/')"/>
+{% endif %}
+</span>
+		</div>
+		{% endif %}
+
+
+
+                            	<div class="clear"></div>
+                            </div>
+                        </td>
+                        <td width="5" background="/media/images/table/table_br.gif">&nbsp;</td>
+                      </tr>
+                    </table>
+                </div>
+                
+            </div>
+            
+        </div>
+{% endblock %}
