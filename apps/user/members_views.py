@@ -16,7 +16,6 @@ def members_register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             info = form.cleaned_data
-            print info['member_password2']
             try:
                 Members.objects.using('default').create(member_card_id = str(info['member_card_id']),member_name = str(info['member_name']),\
                   members_id = str(info['member_id']),member_rank = str(info['member_rank']),member_phone=info['member_phone'],member_status=info['member_status'],\
