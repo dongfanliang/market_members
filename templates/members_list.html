@@ -5,6 +5,7 @@
 					<tr>
 						<td class="add"><a href="{% url memregister %}">注册会员</a></td>
 						<td class="delet"><a href="javascript:del_members('membersform','{% url delmembers%}');">注销会员</a></td>
+						<td class="editor"><a href="javascript:editor_members('membersform','{% url editmembers%}');">修改资料</a></td>
 					</tr>
 				</table>
 </div>
@@ -26,7 +27,7 @@
 <br>
 </div>
   <div class="div">
-     <form id = 'membersform' action="" method="POST"> {% csrf_token %}
+     <form id = 'membersform' action="" method="get"> {% csrf_token %}
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                <td width="5" background="/media/images/table/table_l.gif"></td>

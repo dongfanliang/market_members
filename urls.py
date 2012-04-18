@@ -14,6 +14,6 @@ urlpatterns = patterns('',
      url(r'^members/$', members_views.members_list, name="members"),
      url(r'^members/register/$', members_views.members_register, name="memregister"),
      url(r'^members/delete/$', members_views.members_delete, name="delmembers"),
-     #url(r'^members/edit/$', members_views.members_edit, name="editmembers"),
+     url(r'^members/edit/$', members_views.members_edit, name="editmembers"),
      #url(r'^admininfo/$', user_views.register, name="admininfo"),
 )

@@ -40,23 +40,31 @@ function del_members(submitform,url) {
         }
    }
    
-   function editor_members(submitform,url) {
+function editor_members(submitform,url) {
     var submitform = document.getElementById(submitform);
     var myCheck = document.getElementsByName('cb');
+    var checkAll = document.getElementById('checkall');
     var hasChecked=false;
-    if (myCheck.length > 1 || myCheck.length < 0)
-        alert("只能选择一天数据进行修改!");
-    else
+    var count = 0;
+    for(var i=0;i<myCheck.length;i++)
     {
-        if(myCheck[0].checked == true)
+        if(myCheck[i].checked == true)
         {
+            count++;
             hasChecked = true;
         }
     }
+    if(checkAll.checked == true)
+        hasChecked = true;
     if(hasChecked == false) {
         alert('请选择要修改的数据！');
-    }else{
-		submitform.action = url;
-                submitform.submit();
+    }else
+        {
+                if (count == 1){
+		    submitform.action = url;
+                    submitform.submit();
+                }else{
+                     alert('只能修改一条数据!')
+                }
         }
    }

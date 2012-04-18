@@ -16,11 +16,12 @@ def members_register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             info = form.cleaned_data
+            print info['member_password2']
             try:
                 Members.objects.using('default').create(member_card_id = str(info['member_card_id']),member_name = str(info['member_name']),\
                   members_id = str(info['member_id']),member_rank = str(info['member_rank']),member_phone=info['member_phone'],member_status=info['member_status'],\
                   member_create_time = info['member_createtime'],member_surplus=info['member_surplus'],member_points=info['member_points'],\
-                  member_password=info['member_password2'],member_sex=info['member_sex'])
+                  member_password=info['member_password1'],member_sex=info['member_sex'])
             except Exception, e:
                 return render_to_response('error.html',{'error':e,'user':request.session[USERNAME]})
             return HttpResponseRedirect('/members/')
@@ -31,7 +32,7 @@ def members_register(request):
     return render_to_response('members_register.html',{'forms':form,'user':request.session[USERNAME]})
 
 def members_delete(request):
-    to_del_list = request.POST.getlist('cb')
+    to_del_list = request.GET.getlist('cb')
     num = len(to_del_list)
     for i in range(num):
         try :
@@ -40,5 +41,32 @@ def members_delete(request):
             return render_to_response('error.html',{'error':ex,'user':request.session[USERNAME]})
     return HttpResponseRedirect('/members/')
 
-#def member_edit(request):
+def members_edit(request):
+    if request.method == 'POST':
+        member_card_id = request.POST.get('member_card_id', '')
+        member_name = request.POST.get('member_name', '')
+        member_password = request.POST.get('member_password2', '')
+        member_sex = request.POST.get('member_sex','')
+        members_id = request.POST.get('members_id','')
+        member_phone = request.POST.get('member_phone','')
+        member_rank = request.POST.get('member_rank', '')
+        member_status = request.POST.get('member_status', '')
+        member_createtime = request.POST.get('member_createtime', '') 
+        member_points =request.POST.get('member_points', '')
+        member_surplus = request.POST.get('member_surplus', '')
+        try:
+            Members.objects.using('default').filter(member_card_id = member_card_id).update(member_name = member_name, member_password = member_password, member_sex = member_sex, members_id = members_id, member_phone = member_phone, member_rank = member_rank, member_status = member_status, member_create_time = member_createtime, member_points = member_points, member_surplus = member_surplus)
+        except Exception,ex:
+            return render_to_response('error.html',{'error':ex,'user':request.session[USERNAME]})
+        return HttpResponseRedirect('/members/')
+    else:
+        edit_item = request.GET.get('cb', '')
+        try:
+            member  = Members.objects.using('default').get(id = edit_item)
+        except Exception, ex:
+            return render_to_response('error.html',{'error':ex,'user':request.session[USERNAME]})
+    return render_to_response('member_edit.html',{'member':member,'user':request.session[USERNAME]})
+   
+
+
     
