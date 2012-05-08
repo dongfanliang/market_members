@@ -87,34 +87,6 @@ table{empty-cells: show;border-collapse: collapse;}
 .number{ float:right;padding:2px 5px 0px 5px;}
 .switch_bn{ background:url(../images/table/switch_bn.gif) no-repeat; width:44px; height:20px; margin:3px 5px 0px;color:#002F5E; cursor:pointer; border:none;}
 
-/*------------end table--------------*/
-
-
-
-
-
-/*--------弹出窗口-------*/
-.box{ text-align:left;border:solid 1px #486984; border-bottom:none; background:#A2D1ED;}
-.box-title{ height:44px; background:url(../images/box/title-bg.gif) repeat-x;}
-.titleH2{margin:0;padding:8px 0px 0px 5px;line-height:35px; font-size:12px; font-family:"宋体";}
-.btnbg, .btnbg-1{
-color:#fff;
-border:none;
-height:32px;
-line-height:28px;
-margin-right:3px;
-}
-.btnbg{width:113px; background:url(../images/box/btn-1.gif) no-repeat;}
-.btnbg-1{width:79px; background:url(../images/box/btn-3.gif) no-repeat;}
-.titleClose{position:absolute;right:6px;top:6px;}
-.titleClose a{ color:#004891;}
-.box-nr{ width:auto; margin:0px 2px 0px 2px; border:solid 1px #486984; border-bottom:none; background:#E2EFFB; padding:10px 10px 5px 10px; line-height:28px;}
-.Botton{text-align:right; height:25px; margin-top:10px;}
-.btn{ background:url(../images/btn.gif) no-repeat; height:25px; width:76px; line-height:25px; border:none; margin-right:5px;}
-.box-b{ width:auto; height:7px; background:url(../images/box/b-c.gif) repeat-x;}
-.box-b-l{ width:7px; height:7px; background:url(../images/box/b-l.gif) no-repeat; float:left;}
-.box-b-r{ width:7px; height:7px; background:url(../images/box/b-r.gif) no-repeat; float:right;}
-
 /*-----------error-------------*/
 
 .error{font-weight:bold;color:#ff9955;}
@@ -127,28 +99,20 @@ margin-right:3px;
 .tDiv{ position:absolute; border:1px solid black; background-color:#ffffdd }
 .admin-td{font-weight:bold;font-style:italic; }
 
-/*-----------add---------------*/
-.hid_div1 {
-z-index:3;
-background-color:#6d767d;
-filter:Alpha(opacity=50);
-opacity:0.5;
--moz-opacity:.5;
-width:100%;
-height:100%;
-position:absolute;
-display:block;
+.searchinput{
+	border-right-width: 0px;
+	padding-left: 3px;
+	width: 168px;
+	font-family: arial;
+	float: left;
+	border-top-width: 0px;
+	border-bottom-width: 0px;
+	color: #636365;
+	margin-left: 4px;
+	font-size: 8pt;
+	vertical-align: middle;
+	border-left-width: 0px;
+	margin-right: 3px;
+        height:16px;
 }
 
-.hid_div2{
-background-color:#ffffff;
-position: absolute;
-height: auto;
-width: 500px;
-float: left;
-left: 34%;
-top: 27%;
-background-repeat: no-repeat;
-z-index:4;
-display:block;
-}

@@ -15,5 +15,6 @@ urlpatterns = patterns('',
      url(r'^members/register/$', members_views.members_register, name="memregister"),
      url(r'^members/delete/$', members_views.members_delete, name="delmembers"),
      url(r'^members/edit/$', members_views.members_edit, name="editmembers"),
+     url(r'^members/serach/$', members_views.members_search, name="searchmembers"),
      #url(r'^admininfo/$', user_views.register, name="admininfo"),
 )

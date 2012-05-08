@@ -2,6 +2,7 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from django.utils.encoding import smart_str, smart_unicode
 
 from apps.user.members_forms import RegisterForm
 from apps.auth.static import *
@@ -66,6 +67,34 @@ def members_edit(request):
             return render_to_response('error.html',{'error':ex,'user':request.session[USERNAME]})
     return render_to_response('member_edit.html',{'member':member,'user':request.session[USERNAME]})
    
-
-
+def members_search(request):
+    if request.method == 'POST':
+       card_id = request.POST.get('list_search')
+       mem_rank = request.POST.get('mem_rank')
+       mem_name = request.POST.get('mem_name')
+       print mem_name, mem_rank, card_id
+       if smart_str(card_id) !='会员卡号':
+           if mem_rank != 'all':
+               if mem_name != '':
+                   results = Members.objects.using('default').filter(member_card_id__contains=card_id, member_name__contains=mem_name, member_rank__contains=mem_rank)
+               else:
+                   results = Members.objects.using('default').filter(member_card_id__contains=card_id, member_rank__contains=mem_rank)
+           else:
+               if mem_name != '':
+                   results = Members.objects.using('default').filter(member_card_id__contains=card_id, member_name__contains=mem_name)
+               else:
+                   results = Members.objects.using('default').filter(member_card_id__contains=card_id)                   
+       else:
+           if mem_rank != 'all':
+               if mem_name != '':
+                   results = Members.objects.using('default').filter(member_name__contains=mem_name, member_rank__contains=mem_rank)
+               else:
+                   results = Members.objects.using('default').filter(member_rank__contains=mem_rank)
+           else: 
+               if mem_name != '':
+                   results = Members.objects.using('default').filter(member_name__contains=mem_name)
+               else:
+                   results = Members.objects.using('default').all()
+    return render_to_response('members_list.html',{'members':results, 'user':request.session[USERNAME]})
     
+
