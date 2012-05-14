@@ -1,0 +1,74 @@
+{% extends "base.html" %} 
+{% block content %}
+
+
+<div class="conment-title">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>用户管理(超级管理员)</td>						
+					</tr>
+				</table>
+</div>
+<div class="conment-div">
+<div style="display:block" id="search">
+<br>
+
+<form action="{% url usersearch %}" method="POST">
+<table align="right">
+    <tr>
+        <td>
+           <input type="text" style="width:145px;font-size:10pt;color: #636365;" value="用户名", onblur="if(this.value=='')value='用户名';" onfocus="if(this.value=='用户名')value='';" name="list_search" tabindex="2" />
+        </td>  
+        <td>
+        <div id="mem_search" style="display:none">
+<table border="0" align="right">
+<tr>
+</tr>
+</table>
+</div>
+        </td> 
+        <td>
+           <input type="submit" value="搜索"/>　
+        </td>
+    </tr>
+</table>
+</form>
+　　<a href="{% url useradd %}">添加管理员</a>
+　　<a href="javascript:del_members('membersform','{% url userdelete%}');">删除管理员</a>
+</div>
+  <div class="div">
+     <form id = 'membersform' action="" method="get"> {% csrf_token %} 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td width="5" background="/media/images/table/table_l.gif"></td>
+               <td>
+                   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+                       <thead>
+                           <tr><th width="4%"><input name="cb1" type="checkbox" id="checkall" onclick="CheckTitle('cb', 'checkall')"></th>
+                               <th width="10%"><span>管理员姓名</span></th>
+                               <th width="10%"><span>注册邮箱</span></th>
+                               <th width="10%"><span>分店</span></th>
+                               <th width="10%"><span>分店地址</span></th>              
+                           </tr>
+                       </thead>
+                       {% for user in users %}
+                       <tbody>
+                       {% if user.username != 'admin'%}
+                        <td class="txc"><input type="checkbox" name="cb" id="{{ user.id }}" value="{{ user.id }}" onclick="check('cb', 'checkall')"/></td>
+                        {% else %}
+                        <td class="txc"></td>
+                        {% endif %}
+                               <td class="txc">{{user.username}}</td>
+                               <td class="txc">{{user.email}}</td>
+                               <td class="txc">{{user.branch}}</td>
+                               <td class="txc">{{user.branch_address}}</td>
+                               
+                       </tbody>
+                        {% endfor %}
+
+            </tr>
+        </table>
+     </form>
+  </div>
+</div>
+{% endblock %} 

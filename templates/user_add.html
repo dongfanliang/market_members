@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="conment-title">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+                        <td>添加管理员</td>
+					</tr>
+				</table>
+</div>
+<div class="conment-div">
+<form id="edit" method="post" action="{% url useradd%}"><div style='display:none;'><input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='b773333d0c019876c1fee96ff0f98c9b' /></div>
+<table class="tab">
+
+{% for form in forms%}
+<tr>
+    <td>{{form.label}}</td>
+    <td>{{form}}{{form.help_text}}</td>
+    {% for error in form.errors%}
+        <td><font color=ff0000>{{error}}</font></td>
+    {%endfor%}
+</tr>
+{%endfor%}
+
+</table>
+<div style="margin-left:150px;margin-top:10px;">
+<input type="submit" value="保存" class="btn"  />
+</div>
+</form>
+</div>
+
+    </div>
+    <div class="footer"></div>
+{% endblock %}

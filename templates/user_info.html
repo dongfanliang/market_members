@@ -1,0 +1,59 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="conment-title">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+                        <td>个人中心</td>
+					</tr>
+				</table>
+</div>
+<div class="conment-div">
+<form id="edit" method="post" action="{% url userinfo%}"><div style='display:none;'><input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='b773333d0c019876c1fee96ff0f98c9b' /></div>
+<table class="tab">
+
+<tr>
+    <td>姓　　名：</td>
+    <td><input name="username" readonly style="width:142px;font-size:10pt;" type="text"  maxlength="10" value="{{use.username}}"/></td>
+    
+</tr>
+<tr>
+    <td>分　　店：</td>
+    <td><input name="branch"  style="width:142px;font-size:10pt;" type="text"  maxlength="10" value="{{use.branch}}"/></td>
+    
+</tr>
+<tr>
+    <td>分店地址：</td>
+    <td><input name="branch_address"  style="width:142px;font-size:10pt;" type="text"  maxlength="10" value="{{use.branch_address}}"/></td>
+    
+</tr>
+
+
+<tr>
+    <td>密　　码:</td>
+    <td><input name="password" style="width:142px;font-size:10pt;" type="password" maxlength="6" value="{{use.password}}"/>输入6位数字或字母</td>
+    
+</tr>
+
+<tr>
+    <td>邮 　箱:</td>
+    <td><input name="email" style="width:142px;font-size:10pt;" type="text"  maxlength="200" value="{{use.email}}"/></td>
+    
+</tr>
+
+<tr>
+    <td>额外信息:</td>
+    <td><input name="extra" style="width:300px;height:50px;font-size:10pt;" type="text"  maxlength="6" value="{{member.member_password}}"/>输入少于255个数字或字母</td>
+    
+</tr>
+
+
+</table>
+<div style="margin-left:150px;margin-top:10px;">
+<input type="submit" value="确认修改" class="btn"  />
+</div>
+</form>
+</div>
+
+    </div>
+    <div class="footer"></div>
+{% endblock %}

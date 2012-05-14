@@ -1,0 +1,45 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="conment-title">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+                        <td>操作</td>
+					</tr>
+				</table>
+</div>
+<div class="conment-div">
+<form id="edit" method="post" action="{% url cardsloss%}"><div style='display:none;'><input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='b773333d0c019876c1fee96ff0f98c9b' /></div>
+<table class="tab">
+
+<tr>
+    <td>会员卡号：</td>
+    <td><input id="id_member_card_id" style="width:142px;font-size:10pt;" readonly type="text" name="member_card_id" maxlength="10" value="{{member.member_card_id}}" readonly/></td>
+    
+</tr>
+
+<tr>
+    <td>姓　　名：</td>
+    <td><input id="id_member_name" style="width:142px;font-size:10pt;" type="text" readonly name="member_name" maxlength="10" value="{{member.member_name}}"/></td>
+    
+</tr>
+
+<tr>
+    <td>操作：</td>
+    <td><select name="status">
+                        <option value="all" selected>请选择</option>
+			<option value="1">正常</option>
+			<option value="2">锁定</option>
+			<option value="3">挂失</option>
+			</select></td>
+    
+</tr>
+</table>
+<div style="margin-left:150px;margin-top:10px;">
+<input type="submit" value="提交" class="btn"  />
+</div>
+</form>
+</div>
+
+    </div>
+    <div class="footer"></div>
+{% endblock %}

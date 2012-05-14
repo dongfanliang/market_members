@@ -1,0 +1,78 @@
+{% extends "base.html" %} 
+{% block content %}
+
+
+<div class="conment-title">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>会员卡管理</td>						
+					</tr>
+				</table>
+</div>
+<div class="conment-div">
+<div style="display:block" id="search">
+<br>
+
+<form action="{% url cardssearch %}" method="POST">
+<table align="right">
+    <tr>
+        <td><img id= "add" src="/media/images/up.gif" onclick="show()"></td>
+        <td>
+           <input type="text" style="width:145px;font-size:10pt;color: #636365;" value="会员卡号", onblur="if(this.value=='')value='会员卡号';" onfocus="if(this.value=='会员卡号')value='';" name="list_search" tabindex="2" />
+        </td>  
+        <td>
+        <div id="mem_search" style="display:none">
+<table border="0" align="right">
+<tr><td width="70px">　姓　　名:</td><td width="120px"><input type="text" name="mem_name" style="width:100px;font-size:10pt;color: #636365;", tabindex="2" /></td>
+<td width="70px">状　　态:</td><td width="100px"><select name="mem_status">
+                        <option value="all" selected>请选择</option>
+			<option value="1">正常</option>
+			<option value="2">锁定</option>
+			<option value="3">挂失</option>
+			</select></td>
+</tr>
+</table>
+</div>
+        </td> 
+        <td>
+           <input type="submit" value="搜索"/>　
+        </td>
+    </tr>
+</table>
+</form>
+　　<a href="javascript:editor_members('membersform','{% url cardsrechange%}');">充值</a>
+　　<a href="javascript:editor_members('membersform','{% url cardsloss%}');">操作</a>
+</div>
+  <div class="div">
+     <form id = 'membersform' action="" method="get"> {% csrf_token %} 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td width="5" background="/media/images/table/table_l.gif"></td>
+               <td>
+                   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+                       <thead>
+                           <tr><th width="4%"><input name="cb1" type="checkbox" id="checkall" onclick="CheckTitle('cb', 'checkall')"></th>
+                               <th width="10%"><span>会员卡号</span></th>
+                               <th width="10%"><span>姓名</span></th>
+                               <th width="10%"><span>状态</span></th>
+                               <th width="10%"><span>积分</span></th>
+                               <th width="10%"><span>余额(元)</span></th>
+                           </tr>
+                       </thead>
+                       {% for member in members %}
+                       <tbody>
+                        <td class="txc"><input type="checkbox" name="cb" id="{{ member.id }}" value="{{ member.id }}" onclick="check('cb', 'checkall')"/></td>
+                               <td class="txc">{{member.member_card_id}}</td>
+                               <td class="txc">{{member.member_name}}</td>
+                               <td class="txc">{{member.member_status}}</td>
+                               <td class="txc">{{member.member_points}}</td>
+                               <td class="txc">{{member.member_surplus}}</td>
+                       </tbody>
+                        {% endfor %}
+
+            </tr>
+        </table>
+     </form>
+  </div>
+</div>
+{% endblock %} 

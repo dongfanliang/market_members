@@ -1,0 +1,40 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="conment-title">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+                        <td>充值</td>
+					</tr>
+				</table>
+</div>
+<div class="conment-div">
+<form id="edit" method="post" action="{% url cardsrechange%}"><div style='display:none;'><input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='b773333d0c019876c1fee96ff0f98c9b' /></div>
+<table class="tab">
+
+<tr>
+    <td>会员卡号：</td>
+    <td><input id="id_member_card_id" style="width:142px;font-size:10pt;" readonly type="text" name="member_card_id" maxlength="10" value="{{member.member_card_id}}" readonly/></td>
+    
+</tr>
+
+<tr>
+    <td>姓　　名：</td>
+    <td><input id="id_member_name" style="width:142px;font-size:10pt;" type="text" readonly name="member_name" maxlength="10" value="{{member.member_name}}"/></td>
+    
+</tr>
+
+<tr>
+    <td>充值金额：</td>
+    <td><input id="id_member_rechange" style="width:40px;font-size:10pt;" type="text" name="rechange" maxlength="10" onkeyup="value=this.value.replace(/\D+/g,'')"/>(元)</td>
+    
+</tr>
+</table>
+<div style="margin-left:150px;margin-top:10px;">
+<input type="submit" value="充值" class="btn"  />
+</div>
+</form>
+</div>
+
+    </div>
+    <div class="footer"></div>
+{% endblock %}
