@@ -8,6 +8,7 @@ from apps.user.members_forms import RegisterForm
 from apps.auth.static import *
 from apps.models.members import Members
 
+a = ['正常', '锁定','挂失']
 def members_list(request):
     members = Members.objects.using('default').all()
     return render_to_response('members_list.html',{'members':members,'user':request.session[USERNAME]})
@@ -97,4 +98,78 @@ def members_search(request):
                    results = Members.objects.using('default').all()
     return render_to_response('members_list.html',{'members':results, 'user':request.session[USERNAME]})
     
+def cards_list(request):
+    members = Members.objects.using('default').all()
+    for i in members:
+        i.member_status = a[int(i.member_status) - 1]
+    return render_to_response('members_cards.html',{'members':members,'user':request.session[USERNAME]})
+
+def cards_rechange(request):
+    if request.method == 'POST': 
+        member_card_id = request.POST.get('member_card_id', '')
+        member_name = request.POST.get('member_name', '')
+        rechange = request.POST.get('rechange','')
+        if rechange == '':
+            return HttpResponseRedirect('/cards/')
+        n = Members.objects.using('default').get(member_card_id=member_card_id,member_name=member_name)
+        count = float(rechange) + n.member_surplus
+        Members.objects.using('default').filter(member_card_id=member_card_id,member_name=member_name).update(member_surplus=count)
+        return HttpResponseRedirect('/cards/')
+    else:
+        edit_item = request.GET.get('cb', '')
+        try:
+            member  = Members.objects.using('default').get(id = edit_item)
+        except Exception, ex:
+            return render_to_response('error.html',{'error':ex,'user':request.session[USERNAME]})
+    return render_to_response('rechange.html',{'member':member,'user':request.session[USERNAME]})
+    
+def cards_loss(request):
+    if request.method == 'POST': 
+        member_card_id = request.POST.get('member_card_id', '')
+        member_name = request.POST.get('member_name', '')
+        status = request.POST.get('status','')
+        if status == '':
+            return HttpResponseRedirect('/cards/')
+        Members.objects.using('default').filter(member_card_id=member_card_id,member_name=member_name).update(member_status=status)
+        return HttpResponseRedirect('/cards/')
+    else:
+        edit_item = request.GET.get('cb', '')
+        try:
+            member  = Members.objects.using('default').get(id = edit_item)
+        except Exception, ex:
+            return render_to_response('error.html',{'error':ex,'user':request.session[USERNAME]})
+    return render_to_response('cards_loss.html',{'member':member,'user':request.session[USERNAME]})
+    
+def cards_search(request):
+    if request.method == 'POST':
+       card_id = request.POST.get('list_search')
+       mem_status = request.POST.get('mem_status')
+       mem_name = request.POST.get('mem_name')
+       print mem_name, mem_status, card_id
+       if smart_str(card_id) !='会员卡号':
+           if mem_status != 'all':
+               if mem_name != '':
+                   results = Members.objects.using('default').filter(member_card_id__contains=card_id, member_name__contains=mem_name, member_status__contains=mem_rank)
+               else:
+                   results = Members.objects.using('default').filter(member_card_id__contains=card_id, member_status__contains=mem_status)
+           else:
+               if mem_name != '':
+                   results = Members.objects.using('default').filter(member_card_id__contains=card_id, member_name__contains=mem_name)
+               else:
+                   results = Members.objects.using('default').filter(member_card_id__contains=card_id)                   
+       else:
+           if mem_status != 'all':
+               if mem_name != '':
+                   results = Members.objects.using('default').filter(member_name__contains=mem_name, member_status__contains=mem_status)
+               else:
+                   results = Members.objects.using('default').filter(member_status__contains=mem_status)
+           else: 
+               if mem_name != '':
+                   results = Members.objects.using('default').filter(member_name__contains=mem_name)
+               else:
+                   results = Members.objects.using('default').all()
+    for i in results:
+            i.member_status = a[int(i.member_status) - 1]
+    return render_to_response('members_cards.html',{'members':results, 'user':request.session[USERNAME]})
+
 

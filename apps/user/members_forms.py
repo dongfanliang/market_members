@@ -31,5 +31,3 @@ class RegisterForm(forms.Form):
         if psw1 != psw2:
             raise forms.ValidationError("两次密码输入不同.")
             return psw2
-
-

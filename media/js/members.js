@@ -57,14 +57,25 @@ function editor_members(submitform,url) {
     if(checkAll.checked == true)
         hasChecked = true;
     if(hasChecked == false) {
-        alert('请选择要修改的数据！');
+        alert('请选择数据！');
     }else
         {
                 if (count == 1){
 		    submitform.action = url;
                     submitform.submit();
                 }else{
-                     alert('只能修改一条数据!')
+                     alert('只能选择一条数据!')
                 }
         }
    }
+   
+ function show(){ 
+	if(document.getElementById("mem_search").style.display == "none"){
+		document.getElementById("mem_search").style.display = "block";
+		document.getElementById("add").src = "/media/images/down.gif";
+		}
+	else{  
+		document.getElementById("mem_search").style.display="none";
+		document.getElementById("add").src = "/media/images/up.gif";
+            } 
+}

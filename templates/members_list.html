@@ -1,18 +1,6 @@
-{% extends "base_site.html" %} 
+{% extends "base.html" %} 
 {% block content %}
 
-<script type="text/javascript">
-function show(){ 
-	if(document.getElementById("mem_search").style.display == "none"){
-		document.getElementById("mem_search").style.display = "block";
-		document.getElementById("add").src = "/media/images/down.gif";
-		}
-	else{  
-		document.getElementById("mem_search").style.display="none";
-		document.getElementById("add").src = "/media/images/up.gif";
-            } 
-}
-</script>
 <div class="conment-title">
 				<table border="0" cellspacing="0" cellpadding="0">
 					<tr>
@@ -48,7 +36,7 @@ function show(){
 </div>
         </td> 
         <td>
-           <input type="submit" value="搜索"/>
+           <input type="submit" value="搜索"/>　
         </td>
     </tr>
 </table>

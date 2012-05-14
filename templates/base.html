@@ -102,7 +102,7 @@ function aunload()
     	<div class="header-right" align="right">
 		<ul>
 	      <li>
-		  	<br><label>欢迎，{{ user}}。谢谢您的来访。</label><a href="/logout" onclick="logout()" class="fwb"><u>退出</u></a></li></ul>
+		  	<br><label>欢迎{%if user == "admin"%}超级{%endif%}管理员，{{ user}}。谢谢您的来访。</label><a href="/logout" onclick="logout()" class="fwb"><u>退出</u></a></li></ul>
 <!--        	<ul>
 						<li><br><a href="/logout" onclick="logout()" class="fwb"><u>退出</u></a></li>
 						<li><br><label>欢迎，{{ user}}。谢谢您的来访。</label></li>
@@ -122,22 +122,10 @@ function aunload()
 			  
                 	<li class="open"><a id="menu1" href="{% url members %}">会员管理</a>
                   </li>
-                  <li class="open"><a id="menu2" onClick="showsubmenu($(this))">个人中心</a>
- 						<div id="submenu2" style="Display: none;" >
-                    	<ul class="li-div">
-                        	<li class="close"><a href="/usrmodify">个人信息</a></li>
-                            <li class="close"><a href="/usrpasswd">密码修改</a></li>
-                      </ul>
-						</div>
+                  <li class="open"><a id="menu2" href="{%url userinfo%}">个人中心</a>
+ 						
                   </li>								
-               	<li class="open"><a id="menu3" onClick="showsubmenu($(this))">虚拟机与镜像管理</a>
-  						<div id="submenu3" style="display: none; ">
-                   	<ul class="li-div">
-                            <li class="close"><a href="/image">镜像管理</a>
-                            </li>
-                        	<li class="close"><a href="/instance">虚拟机实例</a></li>
-                        </ul>
-						</div>
+               	<li class="open"><a id="menu3" href="">会员制管理</a>
                     </li>
 									
 									<li class="open"><a id="menu4" href="/typelist">资源类型</a>
@@ -165,14 +153,13 @@ function aunload()
                             <li class="close"><a href="/volumesnapshot">逻辑卷快照</a>
                             </li>
                         </ul></div>
-                    </li>                	<li class="open"><a  id="menu9" href="/keypairs">密钥对管理</a>
+                    </li>                	<li class="open"><a  id="menu9" href="{% url cards%}">会员卡管理</a>
                      </li>
 										{% if  user == 'admin' %}	 
-						<li class="open"><a  id="menu10" href="/usrlist">用户管理</a>
+						<li class="open"><a  id="menu10" href="{%url users%}">用户管理</a>
 									</li>
 									 {% endif %}
-		<!--			  <li class="open"><a  id="menu11" href="/loglist">日志管理</a>
-		</li>-->
+		
 
 </ul>
             </div>
