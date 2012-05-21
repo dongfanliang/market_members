@@ -13,7 +13,6 @@
 <div class="conment-div">
 <div style="display:block" id="search">
 <br>
-
 <form action="{% url searchmembers %}" method="POST">
 <table align="right">
     <tr>
@@ -70,10 +69,11 @@
                                <td class="txc">{{member.member_create_time}}</td>
                        </tbody>
                         {% endfor %}
-
+                   </table>
+               </td>
             </tr>
         </table>
      </form>
-  </div>
+  </div> 
 </div>
 {% endblock %} 

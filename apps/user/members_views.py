@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.utils.encoding import smart_str, smart_unicode
 
-from apps.user.members_forms import RegisterForm
+from apps.user.members_forms import RegisterForm,ConsumerForm
 from apps.auth.static import *
 from apps.models.members import Members
 
@@ -15,6 +15,7 @@ def members_list(request):
 
 def members_register(request):
     if request.method == 'POST':
+        print "dddd"
         form = RegisterForm(request.POST)
         if form.is_valid():
             info = form.cleaned_data
@@ -97,6 +98,12 @@ def members_search(request):
                else:
                    results = Members.objects.using('default').all()
     return render_to_response('members_list.html',{'members':results, 'user':request.session[USERNAME]})
+
+def rule(request):
+    return render_to_response('rule.html',{'user':request.session[USERNAME]})
+
+def member_rule(request):
+    return render_to_response('mem_rule.html',{'user':request.session[USERNAME]})
     
 def cards_list(request):
     members = Members.objects.using('default').all()
@@ -172,4 +179,34 @@ def cards_search(request):
             i.member_status = a[int(i.member_status) - 1]
     return render_to_response('members_cards.html',{'members':results, 'user':request.session[USERNAME]})
 
-
+def cards_consume(request):
+    if request.method == 'POST':
+        form = ConsumerForm(request.POST)
+        if form.is_valid():
+            info = form.cleaned_data
+            card = info[str('card')]
+            try:
+                result = Members.objects.using('default').get(member_card_id=card)
+            except Exception,ex:
+                return render_to_response('error.html',{'error':ex,'user':request.session[USERNAME]})
+            money = info[str('money')]
+            method = info[str('method')]
+            if result.member_status == '1':
+                result.member_status = a[int(result.member_status) - 1]   
+                if int(method) == 0:
+                    if result.member_surplus < float(money):
+                        error_m = '卡内余额不足 !'
+                        return render_to_response('error.html',{'error':error_m,'user':request.session[USERNAME]})
+                    else:
+                        result.member_surplus  -= float(money)
+                        result.member_points += float(money)
+                        Members.objects.using('default').filter(member_card_id=card).update(member_surplus = result.member_surplus, member_points = result.member_points)
+                else:
+                    result.member_points += float(money)
+                    Members.objects.using('default').filter(member_card_id=card).update(member_points = result.member_points)
+                return HttpResponseRedirect('/cards/')
+            error_m = '该会员卡处于非正常状态 !'
+            return render_to_response('error.html',{'error':error_m,'user':request.session[USERNAME]})
+    else:
+        form = ConsumerForm()
+    return render_to_response('cards_consume.html',{'forms':form,'user':request.session[USERNAME]})

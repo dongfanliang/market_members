@@ -41,6 +41,7 @@
 </table>
 </form>
 　　<a href="javascript:editor_members('membersform','{% url cardsrechange%}');">充值</a>
+　　<a href="{% url cardsconsume%}">消费</a>
 　　<a href="javascript:editor_members('membersform','{% url cardsloss%}');">操作</a>
 </div>
   <div class="div">
@@ -69,7 +70,9 @@
                                <td class="txc">{{member.member_surplus}}</td>
                        </tbody>
                         {% endfor %}
-
+</table>
+               </td>
+            
             </tr>
         </table>
      </form>

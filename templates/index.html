@@ -6,9 +6,27 @@
 <div class="conment-div">
             	
                 <div class="div">
-            
+          <h4>欢迎{%if user == "admin"%}超级{%endif%}管理员:{{user}}</h4>　　分店名称: {{branch}}　　　分店地址:{{branch_address}}
+          {%if user == "admin"%}　　　
+          <p>　　<a href="{% url users%}">分配权限</a>
+          {% endif %}
+          <br>
+          <br>
+          <font color="#0066cc" size="3px">快速功能导航</font>
+          <br>
+          <hr color="#0066cc">
+          <div class="tu">
+						<div class="tu-1"><a href="{% url cardsconsume%}">会员消费</a></div>
+						<div class="tu-2"><a href="{% url memregister%}">会员办卡</a></div>
+						<div class="tu-3"><a href="{%url cards%}">会员卡列表</a></div>
+						<div class="tu-4"><a href="">积分兑换</a></div>
+						<div class="tu-5"><a href="{% url pointsrule%}">积分制度设置</a></div>
+					</div>
+	<font color="#0066cc" size="3px">重要提醒</font>
+          <br>
+          <hr color="#0066cc">
                 </div>
-             
+          
     </div>    
 </div>
 {% endblock %} 

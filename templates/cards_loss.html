@@ -8,7 +8,7 @@
 				</table>
 </div>
 <div class="conment-div">
-<form id="edit" method="post" action="{% url cardsloss%}"><div style='display:none;'><input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='b773333d0c019876c1fee96ff0f98c9b' /></div>
+<form id="edit" method="post" action="{% url cardsloss%}">{% csrf_token %}
 <table class="tab">
 
 <tr>

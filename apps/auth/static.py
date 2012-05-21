@@ -7,3 +7,5 @@ USERNAME = 'auth_user_name'
 PASSWORD = 'auth_user_password'
 ISADMIN = 'user_admin'
 VERSION = '2012-1-5'
+UPLOAD_URL = 'media/images/gift/'
+

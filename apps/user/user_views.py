@@ -3,19 +3,24 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 
+import smtplib,mimetypes 
+import string
+import random
+from email.mime.text import MIMEText  
+from email.mime.multipart import MIMEMultipart
 from apps.models.user_models import User
 from apps.auth.auth import *
 from apps.auth.static import *
-from apps.user.user_forms import UserForm 
+from apps.user.user_forms import UserForm,PasswordForm
 from django.utils.encoding import smart_str, smart_unicode
 
 
 def log_in(request):
     if request.method == 'POST':
-        username = request.POST.get('username', '').strip()
-        password = request.POST.get('password', '').strip()
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
         print username, password
-        error_m = "Wrong User Name or Password!"
+        error_m = "用户名或密码错误!"
         if username == '' or password == '':
             return render_to_response('login.html',{'error':error_m,'username':'', 'password':''})
         u = authenticated(username, password)    
@@ -29,10 +34,54 @@ def log_in(request):
         return render_to_response('login.html',{'username':'', 'password':''})
 
 def index(request):
-    return render_to_response('index.html', {'user':request.session[USERNAME]})
+    user = User.objects.using('default').get(username = request.session[USERNAME])
+    return render_to_response('index.html', {'branch':user.branch,'branch_address':user.branch_address,'user':request.session[USERNAME]})
+
+def to_email(to, new_password):
+    TO = to
+    FROM = "charlesdong1989@163.com"
+    PSW = "a963852741"
+    Serveraddr = "smtp.163.com" 
+    msg = MIMEMultipart()  
+    msg['From'] = FROM  
+    msg['To'] = to  
+    msg['Subject'] = '大亮子会员管理系统(找回密码)'
+    txt = MIMEText("新密码为:"+new_password)  
+    msg.attach(txt)
+
+    
+    smtp = smtplib.SMTP()
+    smtp.connect(Serveraddr, 25) 
+    smtp.login(FROM, PSW)
+    smtp.sendmail(FROM, TO,  msg.as_string()) 
+    print "Done" 
+    smtp.quit() 
 
 def getpassword(request):
-    return render_to_response('get_password.html', {'flag':0})
+    if request.method == 'POST':
+        form = PasswordForm(request.POST)
+        if form.is_valid():
+            info = form.cleaned_data 
+            username = str(info['username'])
+            email = str(info['email'])
+            try:
+                user = User.objects.using('default').get(username = username)
+            except Exception,ex:
+                error_m = '用户名不存在!'
+                return render_to_response('getpassword.html', {'forms':form,'error':error_m})
+
+            try:
+                user = User.objects.using('default').get(username = username, email = email)
+            except Exception,ex:
+                error_m = '邮箱错误!'
+                return render_to_response('getpassword.html', {'forms':form,'error':error_m})
+            new_password = string.join(random.sample(['0','1','2','3','4','5','6','7','8','9','z','y','x','w','v','u','t','s','r','q','p','o','n','m','l','k','j','i','h','g','f','e','d','c','b','a'], 5)).replace(' ','')
+            to_email(email, new_password)
+            User.objects.using('default').filter(username = username, email = email).update(password = new_password)
+            return HttpResponseRedirect('/login/')
+    else:
+        form = PasswordForm()
+    return render_to_response('getpassword.html', {'forms':form})
 
 def log_out(request):
     logout(request)

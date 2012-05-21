@@ -18,6 +18,7 @@
 <body>
 <div class="wrap">
 	<div class="header">
+	<div class="logo"><img src="/media/images/logo.png" /></div>
     	<div class="header-right">
         </div>
     </div>
@@ -44,14 +45,13 @@
 					<label class="label">密　码：</label>
 					<input type="password" value="{{ password }}" style="width:145px;font-size:10pt;" id="userpassword_pageonly" name="password" tabindex="3" />
 				</div>
-				
 				<div class="fi fi_jig">
 					<label class="label">&nbsp;</label>&nbsp;<input type="checkbox" id="saveCookie" class="ipt-c" tabindex="4" name="usercheck">&nbsp;记住用户名和密码
-					<a href="/getpassword">找回密码</a>
-				</div> 
+					<a href="{%url getpassword%}">忘记密码?</a>
+				</div>
 			
 				<div class="fi fi-btn">
-					<label class="label">&nbsp;</label>&nbsp;<input  type="submit" value="登　录" onclick="login_sys()" class="btn" tabindex="5" id="submit" /><a href="/usernew">注册新用户</a>
+					<label class="label">&nbsp;</label>&nbsp;<input  type="submit" value="登　录" onclick="login_sys()" class="btn" tabindex="5" id="submit" />
 				</div>
 				<div style="color:#F00" class="fi fi_jig" id="mes"></div>
 			</form>

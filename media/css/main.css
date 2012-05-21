@@ -14,7 +14,7 @@ table{empty-cells: show;border-collapse: collapse;}
 .header-right ul{ margin:0px; padding:0px; list-style-type:none; padding-right:0px;}
 .header-right ul li{font-size:12px; font-weight:bold; display:block; padding:10px 5px 0px 0px; color:#ffffff;}
 .header-right ul li a{ text-decoration:none; color:#ffffff;}
-.logo{ position:absolute; left:15px; top:20px; width:194px; height:39px; }
+.logo{ position:absolute; left:17px; top:10px; width:194px; height:39px; }
 .logo-font{ position:absolute; left:180px; top:27px; display:block; width:175px; font-size:14px; color:#fff;}
 .fwb{ font-weight:bold; font-size:16px;}
 
@@ -115,4 +115,13 @@ table{empty-cells: show;border-collapse: collapse;}
 	margin-right: 3px;
         height:16px;
 }
+.tu{ height:393px;width:555px; text-align:center; background:url("../images/home.gif"); position:relative;margin-left: 25%;margin-top: 25px;font-size:16px;}
+.tu div{
+position:absolute; 
+}
+.tu-1{left:6px;top:48px}
+.tu-2{left:440px;top:39px}
+.tu-3{left:42px;top:259px}
+.tu-4{left:451px;top:252px}
+.tu-5{left:340px;top:337px}
 

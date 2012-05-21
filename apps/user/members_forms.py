@@ -6,6 +6,7 @@ TEXTINPUTATTR = {"style": "width:142px;font-size:10pt;"}
 GENDER_CHOICES = (('F', '男'),('M', '女'))
 RANK = (('A','普通会员'), ('B','银卡'),('C','金卡'))
 STATUS = (('1','正常'),('2','锁定'),('3','挂失'))
+METHOD = (('0', '刷会员卡'),('1', '现金'))
 
 class RegisterForm(forms.Form):
     member_card_id = forms.RegexField(required=True, min_length = 10, max_length=10, label='会员卡号：',regex = r'(^[A-Za-z0-9]+$)',
@@ -31,3 +32,10 @@ class RegisterForm(forms.Form):
         if psw1 != psw2:
             raise forms.ValidationError("两次密码输入不同.")
             return psw2
+
+class ConsumerForm(forms.Form):
+    card = forms.RegexField(required=True, min_length = 10, max_length=10, label='请输入会员卡号：',regex = r'(^[A-Za-z0-9]+$)',
+                                 widget = forms.TextInput(attrs = TEXTINPUTATTR))
+    money = forms.RegexField(required=True, min_length = 1, label='请输入消费金额：',regex = r'(^[A-Za-z0-9.]+$)',
+                                     widget = forms.TextInput(attrs = TEXTINPUTATTR),help_text="(元)")
+    method = forms.ChoiceField(required=True,widget=forms.Select, choices = METHOD, label='消费方式:')
