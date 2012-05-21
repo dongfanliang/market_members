@@ -1,0 +1,48 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="conment">
+   	  
+		<div class="conment-title">添加礼品</div>
+<div class="conment-div">
+            	
+                <div class="div">
+                
+    <form method="POST" action="{% url giftadd %}" enctype="multipart/form-data">
+            <table class="tab">
+                <tr>
+                    <td>
+                        礼品名称: <input type="text" name="name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        单价(元): <input type="text" name="price"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        所需积分: <input type="text" name="points"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        权　　限: <select name="rank" id="rank">
+                                 <option value="普通会员所有">普通会员所有</option>
+                                 <option value="仅银卡以上会员所有">仅银卡以上会员所有</option>
+                                 <option value="仅金卡会员所有">仅金卡会员所有</option>
+                             </select>
+                    </td>
+                </tr>
+            　　 <tr>
+            　　     <td>
+                        选择图片： <input type="file" name="photo" /> {{error}}
+           　　　　   </td>
+                 </tr>
+           </table><br>
+　　　　　　　　　　　　　　　　<input type="submit" value="添　加">
+    </form>
+                </div>
+          
+    </div>    
+</div>
+{% endblock %} 

@@ -1,0 +1,57 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="conment">
+   	  
+		<div class="conment-title">添加礼品</div>
+<div class="conment-div">
+            	
+                <div class="div">
+                
+    <form method="POST" action="{% url giftedit %}">
+            <table class="tab">
+            <tr>
+            　　     <td>
+                        <img src = "/{{gift.name|last}}">
+           　　　　   </td>
+             
+                <td>
+                <table style="margin-top:0px;">
+                  <tr>
+                    
+                        礼品编号: <input type="text" name="id" style="width:50px;" value="{{gift.id}}" readonly/>
+                    
+                   </tr>
+                   <tr>
+                    <td>
+                        礼品名称: <input type="text" name="name" style="width:150px;" value="{{gift.name|first}}"/>
+                    </td>
+                   </tr>
+                   <tr>
+                    <td>
+                        单价(元): <input type="text" name="price" style="width:150px;" value="{{gift.price}}"/>
+                    </td>
+                   </tr>
+                  <tr>
+                    <td>
+                        所需积分: <input type="text" name="points" style="width:150px;" value="{{gift.points}}"/>
+                    </td>
+                </tr>
+            　　 <tr>
+                    <td>
+                        权　　限: <select name="rank" id="rank" value="{{gift.rank}}">
+                                 <option value="普通会员所有">普通会员所有</option>
+                                 <option value="仅银卡以上会员所有">仅银卡以上会员所有</option>
+                                 <option value="仅金卡会员所有">仅金卡会员所有</option>
+                             </select>
+                    </td>
+                </tr>
+                </table></td>
+               </tr>
+           </table><br>
+　　　　　　　　　　　　　　　　<input type="submit" value="修　改">
+    </form>
+                </div>
+          
+    </div>    
+</div>
+{% endblock %} 

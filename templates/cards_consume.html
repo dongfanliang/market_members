@@ -1,0 +1,98 @@
+{% extends "base.html" %} 
+{% block content %}
+<script language=javascript>
+function info(){ 
+	if(document.getElementById("infoo").style.display == "none"){
+		document.getElementById("infoo").style.display = "block";
+		}
+	else{  
+		document.getElementById("infoo").style.display="none";
+		
+            } 
+}
+</script>
+<div class="conment-title">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+                        <td>会员消费</td>
+					</tr>
+				</table>
+</div>
+<div class="conment-div">
+<form method="POST" action="{%url cardsconsume%}">
+<font style="margin-left:20px;" color="ff0000">*注: 会员等级, A代表普通会员, B代表银卡, C代表金卡.</font>
+<table class="tab">
+{% for form in forms%}
+<tr>
+    <td>{{form.label}}</td>
+    <td>{{form}}{{form.help_text}}</td>
+    {% for error in form.errors%}
+        <td><font color=ff0000>{{error}}</font></td>
+    {%endfor%}
+</tr>
+{%endfor%}
+</table>
+ <br>
+<div>　　　　　　　　　　　　　　　      <input type="submit"  value="确　定"/>　<a href="javascript:info()">详细信息</a><div>
+</form>
+
+<div id="infoo" style="display:none">
+<table class="tab" >
+<tr>
+    <td>会员卡号：</td>
+    <td><input style="width:142px;font-size:10pt;" type="text"  maxlength="10" name="consume" value="{{member.member_card_id}}" readonly/></td>
+    
+</tr>
+
+<tr>
+    <td>姓　　名：</td>
+    <td>{{member.member_name}}</td>
+    
+</tr>
+
+
+
+
+<tr>
+    <td> 电　　话:</td>
+    <td>{{member.member_phone}}</td>
+    
+</tr>
+
+<tr>
+    <td>等　　级:</td>
+    <td>{{member.member_rank}}</td>
+    
+</tr>
+
+<tr>
+    <td>状　　态:</td>
+    <td>{{member.member_status}}</td>
+    
+</tr>
+
+<tr>
+    <td>创建时间:</td>
+    <td>{{member.member_create_time}}</td>
+    
+</tr>
+
+<tr>
+    <td>积　　分:</td>
+    <td>{{member.member_points}}</td>
+    
+</tr>
+
+<tr>
+    <td>账户余额:</td>
+    <td>{{member.member_surplus}}</td>
+    
+</tr>
+
+</table>
+
+</div>
+
+    </div>
+   
+{% endblock %}

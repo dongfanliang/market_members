@@ -1,0 +1,80 @@
+{% extends "base.html" %} 
+{% block content %}
+<script type="text/javascript">
+ function show_info(){ 
+	if(document.getElementById("mem_search").style.display == "none"){
+		document.getElementById("mem_search").style.display = "block";
+		
+		}
+	else{  
+		document.getElementById("mem_search").style.display="none";
+		
+            } 
+}
+</script>
+<div class="conment">
+   	  
+		<div class="conment-title">会员卡等级边界设置</div>
+<div class="conment-div">
+            	
+                <div class="div">
+                 
+                
+          <form action="{% url rank%}" method="POST">
+          <table class="tab">
+              <tr>      
+                 <td>            
+                  <font color="ff0000"> {{error}}</font>
+                 </td>
+              </tr>    
+              <tr>                  
+                  <td>普卡边界:<input name="rankA" style="width:100px;font-size:10pt;"  type="text" onkeyup="value=this.value.replace(/\D+/g,'')"/>(元)</td>
+                  <td>银卡边界:<input name="rankB" style="width:100px;font-size:10pt;"  type="text" onkeyup="value=this.value.replace(/\D+/g,'')"/>(元)</td>
+                  <td>金卡边界:<input name="rankC" style="width:100px;font-size:10pt;"  type="text" onkeyup="value=this.value.replace(/\D+/g,'')"/>(元)</td>
+              </tr>            
+          </table>
+          
+          <br>
+          <p>　　　　　　　　　　　　　　　　　　　　　　　　　<input type="submit" value="确　定"/>　<a href="javascript:show_info()">↓现有规则↓<a></p>
+          </form>
+          <table class = "tab" style="display:none" id="mem_search">
+        <tr>
+          <td width="10%" valign="top"><p>原卡 </p></td>
+          <td width="20%" valign="top"><p>累计消费金额（A(元)/年） </p></td>
+          <td width="20%" valign="top"><p>&nbsp;&nbsp;&nbsp;&nbsp;新卡 </p></td>
+        </tr>
+        <tr>
+          <td valign="top"><p>会员普卡 </p></td>
+          <td  valign="top">
+              
+            <p>A ＜ {{rank.ranka}} </p><p> {{rank.ranka}}≤ A ＜ {{rank.rankb}} </p><p> {{rank.rankb}} ≤ A ＜ {{rank.rankc}}</p><p> {{rank.rankc}} ≤ A </p></td>
+          <td valign="top">
+              
+            <p>自动失效 </p><p>会员普卡 </p><p>转为会员银卡 </p><p>转为会员金卡</p></td>
+        </tr>
+        <tr>
+          <td  valign="top"><p>会员银卡 </p></td>
+          <td  valign="top">
+              
+            <p>A ＜ {{rank.ranka}} </p><p>{{rank.ranka}} ≤ A ＜ {{rank.rankb}} </p><p>A ≥ {{rank.rankc}} </p></td>
+          <td valign="top">
+              
+            <p>自动失效 </p><p>会员银卡 </p><p>转为会员金卡 </p></td>
+        </tr>
+        <tr>
+          <td valign="top"><p>会员金卡 </p></td>
+          <td valign="top">
+              
+            <p>A ＜ {{rank.ranka}} </p><p>{{rank.ranka}} ≤ A＜{{rank.rankc}} </p><p>A ≥ {{rank.rankc}} </p></td>
+          <td valign="top">
+              
+            <p>自动失效 </p><p>转为会员银卡 </p><p>会员金卡 </p></td>
+        </tr>
+      </table><br>
+     
+ 
+                </div>
+          
+    </div>    
+</div>
+{% endblock %} 

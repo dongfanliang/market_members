@@ -1,0 +1,42 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="conment-title">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+                        <td>添加商品类别</td>
+					</tr>
+				</table>
+</div>
+<div class="conment-div">
+<form id="edit" method="post" action="{% url proportionadd%}">{% csrf_token %}
+<table class="tab">
+<tr>
+      <td>
+          <font color="ff0000">{{error}}</font>
+      </td>
+  </tr>
+  <tr>
+      <td>
+          商品类别: <input type="text" name="type" />*
+      </td>
+  </tr>
+  <tr>
+      <td>
+          积分兑换比例: <input type="text" name="proprotion" />(消费金额(元)/积分)* <font color="ff0000">{{error_m}}</font>
+      </td>
+  </tr>
+  <tr>
+      <td>
+           商品明细: <textarea  name="extra" style="width:300px;height:80px;font-size:10pt;" /></textarea>少于255个字
+      </td>
+  </tr>
+</table>
+<div style="margin-left:200px;margin-top:10px;">
+<input type="submit" value="添　加" class="btn"  />
+</div>
+</form>
+</div>
+
+    </div>
+    <div class="footer"></div>
+{% endblock %}

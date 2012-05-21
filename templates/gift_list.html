@@ -1,0 +1,73 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="conment">
+   	  
+		<div class="conment-title">
+		<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td class="add"><a href="{% url giftadd %}">添加礼品</a></td>
+						<td class="delet"><a href="javascript:del_members('membersform','{% url giftdelete%}');">删除</a></td>
+						<td class="editor"><a href="javascript:editor_members('membersform','{% url giftedit%}');">修改</a></td>
+					</tr>
+				</table>
+		</div>
+		
+<div class="conment-div">
+            	
+                <div class="div">
+     <form id = 'membersform' action="" method="get"> {% csrf_token %}
+
+            　　　　　　<input name="cb1" type="checkbox" id="checkall" onclick="CheckTitle('cb', 'checkall')">全选
+                   <table class="table" style="margin-left:100px;margin-top:10px;">
+                      
+                       
+                       <tr>    
+                       {% for gift in gifts_rankA %}   
+                               <td><img src = "/{{gift.name|last}}"><br>
+                                   名称: {{gift.name|first}}<br>
+                                   单价: {{gift.price}}(元)<br>
+                                   所需积分: {{gift.points}}<br>
+                                   <input type="checkbox" name="cb" id="{{ gift.id }}" value="{{ gift.id }}" onclick="check('cb', 'checkall')"/>                                   
+                               </td>
+                       
+                        {% endfor %}
+                        </tr>
+        </table><br>
+        <font color="#4169E1">银卡专区</font>
+        <hr color="#4169E1">
+        <table class="table" style="margin-left:100px;margin-top:30px;">
+                       <tr>    
+                       {% for gift in gifts_rankB %}   
+                               <td><img src = "/{{gift.name|last}}"><br>
+                                   名称: {{gift.name|first}}<br>
+                                   单价: {{gift.price}}(元)<br>
+                                   所需积分: {{gift.points}}<br>
+                                   <input type="checkbox" name="cb" id="{{ gift.id }}" value="{{ gift.id }}" onclick="check('cb', 'checkall')"/>                                   
+                               </td>
+                       
+                        {% endfor %}
+                        </tr>
+        </table><br>
+        <font color="#4169E1">金卡专区</font>
+        <hr color="#4169E1">
+        <table class="table" style="margin-left:100px;margin-top:30px;">
+                       <tr>    
+                       {% for gift in gifts_rankC %}   
+                               <td><img src = "/{{gift.name|last}}"><br>
+                                   名称: {{gift.name|first}}<br>
+                                   单价: {{gift.price}}(元)<br>
+                                   所需积分: {{gift.points}}<br>
+                                   <input type="checkbox" name="cb" id="{{ gift.id }}" value="{{ gift.id }}" onclick="check('cb', 'checkall')"/>                                   
+                               </td>
+                       
+                        {% endfor %}
+                        </tr>
+        </table><br>
+</form>
+   	    </div>
+   	</div>
+                </div>
+          
+    </div>    
+</div>
+{% endblock %} 

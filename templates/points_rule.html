@@ -1,0 +1,49 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<div class="conment-title">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td class="add"><a href="{% url proportionadd %}">添加</a></td>
+						<td class="delet"><a href="javascript:del_members('membersform','{% url proportiondelete%}');">删除</a></td>
+						<td class="editor"><a href="javascript:editor_members('membersform','{% url proportionedit%}');">修改</a></td>
+					</tr>
+				</table>
+</div>
+<div class="conment-div">
+
+  <div class="div">
+
+     <h3>　<font color="#4169E1">可兑换积分商品列表</font></h3><br>
+     <form id = 'membersform' action="" method="get"> {% csrf_token %}
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td width="5" background="/media/images/table/table_l.gif"></td>
+               <td>
+                   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+                       <thead>
+                           <tr><th width="4%"><input name="cb1" type="checkbox" id="checkall" onclick="CheckTitle('cb', 'checkall')"></th>
+                               <th width="10%"><span>商品类别</span></th>
+                               <th width="10%"><span>积分兑换比例(消费金额/积分)</span></th>
+                               <th width="10%"><span>商品明细</span></th>
+                               
+                           </tr>
+                       </thead>
+                       {% for proportion in proportionals %}
+                       <tbody>
+                        <td class="txc"><input type="checkbox" name="cb" id="{{ proportion.id }}" value="{{ proportion.id }}" onclick="check('cb', 'checkall')"/></td>
+                               <td class="txc">{{proportion.goodstype}}</td>
+                               <td class="txc">{{proportion.proportion}}</td>
+                               <td class="txc">{{proportion.extra}}</td>
+                               
+                       </tbody>
+                        {% endfor %}
+
+            </table>
+               </td>
+            </tr>
+        </table>
+     </form>
+  </div> 
+</div>
+{% endblock %} 
