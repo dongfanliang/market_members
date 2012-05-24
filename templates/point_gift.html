@@ -1,0 +1,95 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<script type="text/javascript">
+ function show_d(){ 
+	if(document.getElementById("mem_search").style.display == "none"){
+		document.getElementById("mem_search").style.display = "block";
+		
+		}
+	else{  
+		document.getElementById("mem_search").style.display="none";
+		
+            } 
+}
+</script>
+<div class="conment-title">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+                        <td>积分兑换礼品</td>
+					</tr>
+				</table>
+</div>
+<div class="conment-div">
+<form method="POST" action="{%url cardsss%}">{% csrf_token %}
+<table style="margin-left:100px;margin-top:70px;">
+<tr>
+    <td>会员卡号: <input type="text"  name="cardid" value="{{member.member_card_id}}" /></td>
+    <td>　<input type="submit"  value="查　询"/>　<font color=ff0000>{{error}}</font></td>
+</tr>
+</table>
+</form>
+
+<form method="POST" action="{% url pointgift%}">{% csrf_token %}
+<table  style="margin-left:100px;margin-top:10px;" >
+<tr>
+    <td width="110px">
+        姓名:　<input name="name" value="{{member.member_name}}" readonly style="width:50px;"/>
+    </td>
+    <td width="110px">
+        等级:　<input name="rank" value="{{member.member_rank}}" readonly style="width:50px;"/>
+    </td>
+    <td width="110px">
+        状态:　<input name="status" value="{{member.member_status}}" readonly style="width:50px;"/>　
+    </td>
+    <td width="130px">
+        积分:　<input name="points" value="{{member.member_points}}" readonly style="width:50px;"/>　　
+    </td>
+
+</tr>
+</table>
+<br>
+
+<table style="margin-left:100px;margin-top:10px;" >
+   <tr>
+      <td>
+          可兑换的礼品: <select name="gift_list">
+          　　　　　　　　　
+                       {% for i in gifts%}
+                        <option value="{{i.name}}">{{i.name}}</option>
+                        {% endfor %}
+			</select>
+      </td>
+      <td>
+      　　<input type="submit" value="兑　换"/>　<input type="button" value="返　回" onClick="history.go(-1);" /> <a href="javascript:show_d()">↓详细清单↓</a>    　　
+      </td>
+      </tr>
+</table>
+</form><br><br>
+<div style="display:none" id="mem_search">
+<font color="#4169E1">　可兑换的礼品详细清单</font>
+        <hr color="#4169E1">
+
+<table class="tab" >
+    <tr>
+       <td>　礼品名称</td>
+       <td>单价(元)</td>
+       <td>所需积分(分)</td>
+    </tr>
+    {% for gift in gifts%}
+    <tr>
+       <td>
+         　{{gift.name}}　　
+       </td>
+       <td>
+         　{{gift.price}}　
+       </td>
+       <td>
+         　{{gift.points}}　　
+       </td>
+    </tr>
+    {% endfor %}
+ </table></div>
+    </div>
+   
+{% endblock %}

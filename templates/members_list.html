@@ -55,8 +55,9 @@
                                <th width="10%"><span>会员卡号</span></th>
                                <th width="10%"><span>姓名</span></th>
                                <th width="10%"><span>电话号</span></th>
+                               <th width="10%"><span>身份证号</span></th>
                                <th width="10%"><span>会员等级</span></th>
-                               <th width="10%"><span>注册时间</span></th>
+                               
                            </tr>
                        </thead>
                        {% for member in members %}
@@ -65,8 +66,9 @@
                                <td class="txc">{{member.member_card_id}}</td>
                                <td class="txc">{{member.member_name}}</td>
                                <td class="txc">{{member.member_phone}}</td>
+                               <td class="txc">{{member.members_id}}</td>
                                <td class="txc">{{member.member_rank}}</td>
-                               <td class="txc">{{member.member_create_time}}</td>
+                               
                        </tbody>
                         {% endfor %}
                    </table>

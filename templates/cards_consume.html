@@ -3,7 +3,7 @@
 <script language=javascript>
 function info(){ 
 	if(document.getElementById("infoo").style.display == "none"){
-		document.getElementById("infoo").style.display = "block";
+           document.getElementById("infoo").style.display = "block";
 		}
 	else{  
 		document.getElementById("infoo").style.display="none";
@@ -19,79 +19,69 @@ function info(){
 				</table>
 </div>
 <div class="conment-div">
-<form method="POST" action="{%url cardsconsume%}">
-<font style="margin-left:20px;" color="ff0000">*注: 会员等级, A代表普通会员, B代表银卡, C代表金卡.</font>
-<table class="tab">
-{% for form in forms%}
+<form method="POST" action="{%url cardss%}">{% csrf_token %}
+<table style="margin-left:100px;margin-top:70px;">
 <tr>
-    <td>{{form.label}}</td>
-    <td>{{form}}{{form.help_text}}</td>
-    {% for error in form.errors%}
-        <td><font color=ff0000>{{error}}</font></td>
-    {%endfor%}
+    <td>会员卡号: <input type="text"  name="cardid" value="{{member.member_card_id}}"/></td>
+    <td>　<input type="submit"  value="查　询"/>　<font color=ff0000>{{error}}</font></td>
 </tr>
-{%endfor%}
 </table>
- <br>
-<div>　　　　　　　　　　　　　　　      <input type="submit"  value="确　定"/>　<a href="javascript:info()">详细信息</a><div>
 </form>
-
-<div id="infoo" style="display:none">
-<table class="tab" >
+<form method="POST" action="{%url cardsconsume%}">{% csrf_token %}
+<table  style="margin-left:100px;margin-top:10px;" >
 <tr>
-    <td>会员卡号：</td>
-    <td><input style="width:142px;font-size:10pt;" type="text"  maxlength="10" name="consume" value="{{member.member_card_id}}" readonly/></td>
-    
+    <td width="110px">
+        姓名:　<input name="name" value="{{member.member_name}}" readonly style="width:50px;"/>
+    </td>
+    <td width="110px">
+        等级:　<input name="rank" value="{{member.member_rank}}" readonly style="width:50px;"/>
+    </td>
+    <td width="110px">
+        状态:　<input name="status" value="{{member.member_status}}" readonly style="width:50px;"/>　
+    </td>
+    <td width="130px">
+        积分:　<input name="points" value="{{member.member_points}}" readonly style="width:50px;"/>　　
+    </td>
+    <td width="200px">
+    　账户余额:　<input name="sur" value="{{member.member_surplus}}" readonly style="width:50px;"/>
+    </td>
 </tr>
-
-<tr>
-    <td>姓　　名：</td>
-    <td>{{member.member_name}}</td>
-    
-</tr>
-
-
-
-
-<tr>
-    <td> 电　　话:</td>
-    <td>{{member.member_phone}}</td>
-    
-</tr>
-
-<tr>
-    <td>等　　级:</td>
-    <td>{{member.member_rank}}</td>
-    
-</tr>
-
-<tr>
-    <td>状　　态:</td>
-    <td>{{member.member_status}}</td>
-    
-</tr>
-
-<tr>
-    <td>创建时间:</td>
-    <td>{{member.member_create_time}}</td>
-    
-</tr>
-
-<tr>
-    <td>积　　分:</td>
-    <td>{{member.member_points}}</td>
-    
-</tr>
-
-<tr>
-    <td>账户余额:</td>
-    <td>{{member.member_surplus}}</td>
-    
-</tr>
-
 </table>
-
-</div>
+<br><br>
+<font color="#0066cc">　确认支付</font>
+<hr color="#0066cc">
+<table class="tab">
+    <tr>
+       <td>
+           <font color="ff0000">{{error_m}}
+       </td>
+    </tr>
+    <tr>
+        <td>
+            消费金额: <input name="price"  style="width:50px;" value="{{price}}"/>(元)　　　
+        </td>
+    </tr>
+    <tr>
+        <td>
+            商品类别:<select name="types">                     
+                        <option value="0">不积累积分</option>
+                        {% for i in types%}
+			<option value="{{i.id}}">{{i.goodstype}}</option>
+			{% endfor %}
+			</select> 　　
+        </td>
+    </tr>
+    <tr>
+        <td>
+            支付方式: <select name="method">
+                        <option value="0">刷会员卡</option>
+			<option value="1">现金消费</option>
+			</select>
+        </td>
+    </tr>
+</table><br>
+　　　　　　　　　　　<input type="submit" value="确认支付" />　<input type="button" value="返　回" onClick="history.go(-1);" />　　      
+</form>
 
     </div>
    

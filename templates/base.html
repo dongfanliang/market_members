@@ -20,17 +20,11 @@
 <script src="../media/js/members.js" language="javascript"></script>
 <script src="../media/js/cookie.js" language="javascript"></script>
 <script type="text/javascript">
-var t;
-t=setTimeout("logout_auto()",10*60000);
+
 function logout_auto()
 {
 	logout();
 	location.href="/logout";
-}
-function goindex()
-{ 
-clearTimeout(t); 
-t=setTimeout("logout_auto()",10*60000); 
 }
 
 function showsubmenu(a) {
@@ -50,27 +44,16 @@ function showsubmenu(a) {
 	
 }
 function lod()
-{
-//	alert('');
-	if(getCookieValue("menu2")!='')
-		document.getElementById("submenu2").style.display = getCookieValue("menu2");
-	else document.getElementById("submenu2").style.display = 'none';
-	if(getCookieValue("menu3")!='')	
-		document.getElementById("submenu3").style.display = getCookieValue("menu3");
-	else document.getElementById("submenu3").style.display = 'none';
-	if(getCookieValue("menu6")!='')
-		document.getElementById("submenu6").style.display = getCookieValue("menu6");
-	else document.getElementById("submenu6").style.display = 'none';
-	if(getCookieValue("menu8")!='')
-		document.getElementById("submenu8").style.display = getCookieValue("menu8");
-	else document.getElementById("submenu8").style.display = 'none';
+{	
+	if(getCookieValue("menu3")!='')	{
+		document.getElementById("submenu3").style.display = getCookieValue("menu3");}
+	else{
+	      document.getElementById("submenu3").style.display = 'none';
+	    }
 }
 function logout()
 {
-    deleteCookie("menu2","/");
 	deleteCookie("menu3","/");
-	deleteCookie("menu6","/");
-	deleteCookie("menu8","/");
 
 }
 var thispage = false;
@@ -88,7 +71,7 @@ function aunload()
 
 </head>
 
-<body id="{% block bodyid %}page{% endblock %}" onload="lod()" onkeypress="goindex()"  onmousedown="goindex()" onmousemove="goindex()" onclick="goindex()">
+<body id="{% block bodyid %}page{% endblock %}" onload="lod()">
 <div class="wrap">
 	<div class="header">
 	<div class="logo"><img src="/media/images/logo.png" /></div>
@@ -122,12 +105,13 @@ function aunload()
                              	<li class="open"><a  id="menu9" href="{% url cards%}">会员卡管理</a>
                      </li>
                      <li class="open"><a id="menu3" onClick="showsubmenu($(this))">会员制管理</a>
-                     <div id="submenu3" style="display: none; ">
+                     <div id="submenu3" style="display:block; ">
                    	<ul class="li-div">
+                   	<li class="close"><a href="{% url rank%}">会员等级设置</a>
+                            </li>
                             <li class="close"><a href="{% url pointsrule%}">积分制度设置</a>
                             </li>
-                            <li class="close"><a href="{% url rank%}">会员等级设置</a>
-                            </li>
+                            
                             
                         	<li class="close"><a href="{%url memrule%}">积分说明</a></li>
                         </ul>

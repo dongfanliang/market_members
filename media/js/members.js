@@ -39,6 +39,30 @@ function del_members(submitform,url) {
                 submitform.submit();
         }
    }
+
+function add_cardtime(submitform,url) {
+    var submitform = document.getElementById(submitform);
+    var myCheck = document.getElementsByName('cb');
+    var checkAll = document.getElementById('checkall');
+    var hasChecked=false;
+    for(var i=0;i<myCheck.length;i++)
+    {
+        if(myCheck[i].checked == true)
+        {
+            hasChecked = true;
+            break;
+        }
+    }
+    if(checkAll.checked == true)
+        hasChecked = true;
+    if(hasChecked == false) {
+        alert('请选择要操作的数据！');
+    }else if(confirm("确定要修改？")) 
+        {
+		submitform.action = url;
+                submitform.submit();
+        }
+   }
    
 function editor_members(submitform,url) {
     var submitform = document.getElementById(submitform);

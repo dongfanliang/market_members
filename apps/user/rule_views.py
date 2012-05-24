@@ -6,10 +6,14 @@ from django.utils.encoding import smart_str, smart_unicode
 import StringIO
 from PIL import Image
 
+import time
+import datetime
+from apps.models.members import Members
 from apps.models.rule import *
 from apps.auth.static import *
 
 
+a = ['正常', '锁定','挂失']
 def rank_set(request):
     if request.method == 'POST':
         rankA = request.POST.get('rankA')
@@ -68,6 +72,7 @@ def proportion_delete(request):
 
 def proportion_edit(request):
     if request.method == 'POST':
+        proportion_id = request.POST.get('id')
         goods_type = request.POST.get('type')
         proportion = request.POST.get('proprotion')
         extra = request.POST.get('extra')
@@ -80,8 +85,7 @@ def proportion_edit(request):
              error_m = '格式错误!'
              return render_to_response('proportion_add.html',{'error_m':error_m,'user':request.session[USERNAME]})
         try:
-             #Proportional.objects.using('rule').filter(id = )
-             pass
+             Proportional.objects.using('rule').filter(id = proportion_id).update(goodstype = goods_type, proportion = proportion, extra = extra)
         except Exception,ex:
             return render_to_response('error.html',{'error':ex,'user':request.session[USERNAME]})
         return HttpResponseRedirect('/rule')
@@ -91,15 +95,15 @@ def proportion_edit(request):
     return render_to_response('proportion_edit.html',{'proportions':proportions,'user':request.session[USERNAME]})
 
 def gift_list(request):
-    gifts_rankA = Gift.objects.using('rule').filter(rank = "普通会员所有").order_by("id")
+    gifts_rankA = Gift.objects.using('rule').filter(rank = "A").order_by("id")
     for i in gifts_rankA:
         i.name = i.name.split('|')
 
-    gifts_rankB = Gift.objects.using('rule').filter(rank = "仅银卡以上会员所有").order_by("id")
+    gifts_rankB = Gift.objects.using('rule').filter(rank = "B").order_by("id")
     for i in gifts_rankB:
             i.name = i.name.split('|')
 
-    gifts_rankC = Gift.objects.using('rule').filter(rank = "仅金卡会员所有").order_by("id")
+    gifts_rankC = Gift.objects.using('rule').filter(rank = "C").order_by("id")
     for i in gifts_rankC:
             i.name = i.name.split('|')
 
@@ -154,7 +158,12 @@ def gift_edit(request):
         l = gift.name.split("|")
         l[0] = gift_name
         name = "|".join(l)
-        Gift.objects.using('rule').filter(id = gift_id).update(name = name, price = price, points = points, rank = rank)
+        gift.name = name
+        gift.price = price
+        gift.points = points
+        gift.rank = rank
+        gift.save()
+#        Gift.objects.using('rule').filter(id = gift_id).update(name = name, price = price, points = points, rank = rank)
         return HttpResponseRedirect('/gift/')
     else:   
         edit_item = request.GET.get('cb', '')
@@ -162,4 +171,49 @@ def gift_edit(request):
         gift.name = gift.name.split('|')
     return render_to_response('gift_edit.html',{'gift':gift,'user':request.session[USERNAME]})
 
+def cards_ss(request):
+    if request.method == 'POST':
+        card = request.POST.get('cardid')
+        try:
+            result = Members.objects.using('users').get(member_card_id = card)
+        except Exception,ex:
+            error_m = "该会员不存在 !"
+            return render_to_response('point_gift.html',{'error':error_m,'user':request.session[USERNAME]})
+    #print type(str(result.member_end_time)), type(str(time.strftime("%Y-%m-%d",time.localtime())))
+    #print str(result.member_end_time) < str(time.strftime("%Y-%m-%d",time.localtime()))
+        result_lists = Gift.objects.using('rule').all()
+        result_list = []
+        for i in result_lists:
+            print result.member_rank, i.rank
+            if result.member_rank >= i.rank: 
+                if int(i.points) <= int(result.member_points):
+                    result_list.append(i)
+        #判断是否过期 
+        if str(result.member_end_time) < time.strftime("%Y-%m-%d",time.localtime()):
+            error_m = '该会员已过期,请续期!'
+            Members.objects.using('users').filter(member_card_id=card).update(member_status = '1')
+            return render_to_response('point_gift.html',{'error':error_m,'member':result,'user':request.session[USERNAME]})
+        for i in result_list:
+            i.name = i.name.split('|')[0]
 
+        result.member_status = a[int(result.member_status) - 1]
+        return render_to_response('point_gift.html',{'gifts':result_list,'member':result,'user':request.session[USERNAME]})
+    return render_to_response('point_gift.html',{'user':request.session[USERNAME]})
+    
+def point_gift(request):
+    if request.method == 'POST':
+        gift = request.POST.get('gift_list') 
+        mem_name = request.POST.get('name')
+        mem_points = request.POST.get('points')
+        if mem_name == '':
+            error_m = '请输入会员卡号 !'
+            return render_to_response('point_gift.html',{'error':error_m,'user':request.session[USERNAME]})
+        if gift == None:
+            error_m = '积分不足不能兑换商品!'
+            return render_to_response('point_gift.html',{'error':error_m,'user':request.session[USERNAME]})
+        member = Members.objects.using('users').get(member_name = mem_name, member_points = mem_points)
+        result = Gift.objects.using('rule').get(name__contains = gift)    
+        member.member_points = member.member_points - int(result.points)
+        member.save()
+        return HttpResponseRedirect('/gift/')
+    return render_to_response('point_gift.html',{'user':request.session[USERNAME]})

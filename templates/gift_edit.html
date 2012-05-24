@@ -2,7 +2,7 @@
 {% block content %}
 <div class="conment">
    	  
-		<div class="conment-title">添加礼品</div>
+		<div class="conment-title">修改礼品信息</div>
 <div class="conment-div">
             	
                 <div class="div">
@@ -39,16 +39,16 @@
             　　 <tr>
                     <td>
                         权　　限: <select name="rank" id="rank" value="{{gift.rank}}">
-                                 <option value="普通会员所有">普通会员所有</option>
-                                 <option value="仅银卡以上会员所有">仅银卡以上会员所有</option>
-                                 <option value="仅金卡会员所有">仅金卡会员所有</option>
+                                 <option value="A">普通会员所有</option>
+                                 <option value="B">仅银卡以上会员所有</option>
+                                 <option value="C">仅金卡会员所有</option>
                              </select>
                     </td>
                 </tr>
                 </table></td>
                </tr>
            </table><br>
-　　　　　　　　　　　　　　　　<input type="submit" value="修　改">
+　　　　　　　　　　　　　　　　<input type="submit" value="修　改">　<input type="button" value="返　回" onClick="history.go(-1);" />
     </form>
                 </div>
           

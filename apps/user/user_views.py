@@ -34,7 +34,7 @@ def log_in(request):
         return render_to_response('login.html',{'username':'', 'password':''})
 
 def index(request):
-    user = User.objects.using('default').get(username = request.session[USERNAME])
+    user = User.objects.using('users').get(username = request.session[USERNAME])
     return render_to_response('index.html', {'branch':user.branch,'branch_address':user.branch_address,'user':request.session[USERNAME]})
 
 def to_email(to, new_password):
@@ -65,19 +65,19 @@ def getpassword(request):
             username = str(info['username'])
             email = str(info['email'])
             try:
-                user = User.objects.using('default').get(username = username)
+                user = User.objects.using('users').get(username = username)
             except Exception,ex:
                 error_m = '用户名不存在!'
                 return render_to_response('getpassword.html', {'forms':form,'error':error_m})
 
             try:
-                user = User.objects.using('default').get(username = username, email = email)
+                user = User.objects.using('users').get(username = username, email = email)
             except Exception,ex:
                 error_m = '邮箱错误!'
                 return render_to_response('getpassword.html', {'forms':form,'error':error_m})
             new_password = string.join(random.sample(['0','1','2','3','4','5','6','7','8','9','z','y','x','w','v','u','t','s','r','q','p','o','n','m','l','k','j','i','h','g','f','e','d','c','b','a'], 5)).replace(' ','')
             to_email(email, new_password)
-            User.objects.using('default').filter(username = username, email = email).update(password = new_password)
+            User.objects.using('users').filter(username = username, email = email).update(password = new_password)
             return HttpResponseRedirect('/login/')
     else:
         form = PasswordForm()
@@ -95,15 +95,15 @@ def userinfo(request):
         extra = request.POST.get('extra', '')
         branch = request.POST.get('branch', '')
         branch_address = request.POST.get('branch_address', '')
-        user = User.objects.using('default').filter(username = username).update(password=password,email=email,extra=extra,branch=branch,branch_address = branch_address)
+        user = User.objects.using('users').filter(username = username).update(password=password,email=email,extra=extra,branch=branch,branch_address = branch_address)
         return HttpResponseRedirect('/index/')
     else:
         username = request.session[USERNAME]
-        user = User.objects.using('default').get(username = username)
+        user = User.objects.using('users').get(username = username)
     return render_to_response('user_info.html', {'use':user,'user':request.session[USERNAME]})
 
 def user_list(request):
-    users = User.objects.using('default').all()
+    users = User.objects.using('users').all()
     return render_to_response('users.html', {'users':users,'user':request.session[USERNAME]})
 
 def user_add(request):
@@ -112,7 +112,7 @@ def user_add(request):
         if form.is_valid():
             info = form.cleaned_data
             try:
-                User.objects.using('default').create(username=str(info['user_name']), password=info['user_password1'],email=info['user_email'],branch=info['user_branch'],branch_address=info['user_branch_address'],extra=info['user_extra'])
+                User.objects.using('users').create(username=str(info['user_name']), password=info['user_password1'],email=info['user_email'],branch=info['user_branch'],branch_address=info['user_branch_address'],extra=info['user_extra'])
             except Exception, e:
                 return render_to_response('error.html',{'error':e,'user':request.session[USERNAME]})
             return HttpResponseRedirect('/user/')
@@ -125,7 +125,7 @@ def user_delete(request):
     num = len(to_del_list)
     for i in range(num):
         try:
-            User.objects.using('default').get(id = to_del_list[i]).delete()
+            User.objects.using('users').get(id = to_del_list[i]).delete()
         except Exception,ex:  
             return render_to_response('error.html',{'error':ex,'user':request.session[USERNAME]})
     return HttpResponseRedirect('/user/')
@@ -135,6 +135,6 @@ def user_search(request):
         username = request.POST.get('list_search')
         if smart_str(username) == '用户名':
             return HttpResponseRedirect('/user/')
-        result = User.objects.using('default').filter(username__contains = smart_str(username))
+        result = User.objects.using('users').filter(username__contains = smart_str(username))
     return render_to_response('users.html', {'users':result,'user':request.session[USERNAME]})
 

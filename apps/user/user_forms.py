@@ -13,9 +13,9 @@ class UserForm(forms.Form):
     user_password1 = forms.RegexField(required=True, min_length = 5, label='密　　码:', regex = r'(^[A-Za-z0-9]+$)',widget = forms.PasswordInput(attrs = TEXTINPUTATTR)) 
     user_password2 = forms.RegexField(required=True, min_length = 5, label='确认密码:', regex = r'(^[A-Za-z0-9]+$)',widget = forms.PasswordInput(attrs = TEXTINPUTATTR),help_text='输入大于5位数字或字母')
     user_email = forms.EmailField(max_length = 200 ,widget=forms.TextInput(attrs = TEXTINPUTATTR),label='邮　　箱：')
-    user_branch = forms.RegexField(required=True, min_length = 1, max_length=255, label='分　　店：',regex = r'(^[A-Za-z0-9]+$)',
+    user_branch = forms.CharField(required=True, min_length = 1, max_length=255, label='分　　店：',
                              widget = forms.TextInput(attrs = TEXTINPUTATTR))
-    user_branch_address = forms.RegexField(required=True, min_length = 2, max_length=255, label='分店地址：',regex = r'(^[A-Za-z0-9]+$)',
+    user_branch_address = forms.CharField(required=True, min_length = 2, max_length=255, label='分店地址:',
                              widget = forms.TextInput(attrs = TEXTINPUTATTR))
     user_extra = forms.RegexField(required=False, min_length = 2, max_length=255, label='额外信息：',regex = r'(^[A-Za-z0-9]+$)',
                              widget = forms.TextInput(attrs = EXTRAINPUTATTR),help_text='输入少于255个字')

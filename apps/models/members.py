@@ -5,6 +5,7 @@ class Members(models.Model):
     members_id = models.CharField(max_length=60, db_column='members_ID', blank=True) # Field name made lowercase.
     member_phone = models.CharField(max_length=60, blank=True)
     member_create_time = models.DateField(null=True, blank=True)
+    member_end_time = models.DateField(null=True, blank=True)
     member_surplus = models.FloatField(null=True, blank=True)
     member_total = models.FloatField(null=True, blank=True)
     member_points = models.IntegerField(null=True, blank=True)

@@ -8,11 +8,16 @@
 				</table>
 </div>
 <div class="conment-div">
-<form id="edit" method="post" action="{% url proportionadd%}">{% csrf_token %}
+<form id="edit" method="post" action="{% url proportionedit%}">{% csrf_token %}
 <table class="tab">
 <tr>
       <td>
           <font color="ff0000">{{error}}</font>
+      </td>
+  </tr>
+  <tr>
+      <td>
+          商品编号: <input type="text" name="id" style = "width:50px" value="{{proportions.id}}" readonly/>
       </td>
   </tr>
   <tr>
@@ -27,12 +32,12 @@
   </tr>
   <tr>
       <td>
-           商品明细: <textarea  name="extra" style="width:300px;height:80px;font-size:10pt;" value="{{proportions.extra}}" /></textarea>少于255个字
+           商品明细: <textarea  name="extra" style="width:300px;height:80px;font-size:10pt;"  />{{proportions.extra}}</textarea>少于255个字
       </td>
   </tr>
 </table>
 <div style="margin-left:200px;margin-top:10px;">
-<input type="submit" value="修　改" class="btn"  />
+<input type="submit" value="修　改" class="btn"  />　<input type="button" value="返　回" onClick="history.go(-1);" />
 </div>
 </form>
 </div>

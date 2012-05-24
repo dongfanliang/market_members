@@ -42,7 +42,9 @@
 </form>
 　　<a href="javascript:editor_members('membersform','{% url cardsrechange%}');">充值</a>
 　　<a href="{% url cardsconsume%}">消费</a>
-　　<a href="javascript:editor_members('membersform','{% url cardsloss%}');">操作</a>
+　　<a href="{% url cardsloss%}">挂失</a>
+　　<a href="{% url cardsretroactive%}">补办</a>
+　　<a href="javascript:add_cardtime('membersform','{% url cardsv%}');">延长有效期</a>
 </div>
   <div class="div">
      <form id = 'membersform' action="" method="get"> {% csrf_token %} 
@@ -57,7 +59,9 @@
                                <th width="10%"><span>姓名</span></th>
                                <th width="10%"><span>状态</span></th>
                                <th width="10%"><span>积分</span></th>
-                               <th width="10%"><span>余额(元)</span></th>
+                               <th width="10%"><span>余额</span></th>
+                               <th width="10%"><span>创建时间</span></th>
+                               <th width="10%"><span>到期时间</span></th>
                            </tr>
                        </thead>
                        {% for member in members %}
@@ -68,6 +72,8 @@
                                <td class="txc">{{member.member_status}}</td>
                                <td class="txc">{{member.member_points}}</td>
                                <td class="txc">{{member.member_surplus}}</td>
+                               <td class="txc">{{member.member_create_time|date:"d-M-Y"}}</td>
+                               <td class="txc">{{member.member_end_time|date:"d-M-Y"}}</td>
                        </tbody>
                         {% endfor %}
 </table>

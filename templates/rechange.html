@@ -8,7 +8,7 @@
 				</table>
 </div>
 <div class="conment-div">
-<form id="edit" method="post" action="{% url cardsrechange%}"><div style='display:none;'><input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='b773333d0c019876c1fee96ff0f98c9b' /></div>
+<form id="edit" method="post" action="{% url cardsrechange%}">{% csrf_token %}
 <table class="tab">
 
 <tr>
@@ -30,7 +30,7 @@
 </tr>
 </table>
 <div style="margin-left:150px;margin-top:10px;">
-<input type="submit" value="充值" class="btn"  />
+<input type="submit" value="充值" class="btn"  />　<input type="button" value="返回" onClick="history.go(-1);" />
 </div>
 </form>
 </div>

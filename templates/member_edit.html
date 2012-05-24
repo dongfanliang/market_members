@@ -3,12 +3,12 @@
 <div class="conment-title">
 				<table border="0" cellspacing="0" cellpadding="0">
 					<tr>
-                        <td>注册会员</td>
+                        <td>修改会员资料</td>
 					</tr>
 				</table>
 </div>
 <div class="conment-div">
-<form id="edit" method="post" action="{% url editmembers%}"><div style='display:none;'><input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='b773333d0c019876c1fee96ff0f98c9b' /></div>
+<form id="edit" method="post" action="{% url editmembers%}">{% csrf_token %}
 <table class="tab">
 
 <tr>
@@ -36,15 +36,6 @@
 </tr>
 
 <tr>
-    <td>性　　别：　　</td>
-    <td><select name="member_sex" id="id_member_sex" value="{{member.member_sex}}">
-<option value="F">男</option>
-<option value="M">女</option>
-</select></td>
-    
-</tr>
-
-<tr>
     <td>身份证号:</td>
     <td><input id="id_member_id" style="width:142px;font-size:10pt;" type="text" name="member_id" maxlength="18" value="{{member.members_id}}"/></td>
     
@@ -66,37 +57,17 @@
     
 </tr>
 
-<tr>
-    <td>状　　态:</td>
-    <td><select name="member_status" id="id_member_status" value="{{member.member_status}}">
-<option value="1">正常</option>
-<option value="2">锁定</option>
-<option value="3">挂失</option>
-</select></td>
-    
-</tr>
 
 <tr>
     <td>创建时间:</td>
-    <td><input style="width:142px;font-size:10pt;" type="text" name="member_createtime" value="2012-04-18" id="id_member_createtime" value="{{member.member_create_time}}"/></td>
+    <td><input style="width:142px;font-size:10pt;" type="text" name="member_createtime" readonly id="id_member_createtime" value="{{member.member_create_time}}"/></td>
     
 </tr>
 
-<tr>
-    <td>积　　分:</td>
-    <td><input style="width:142px;font-size:10pt;" type="text" name="member_points" value="0" id="id_member_points" value="{{member.member_points}}"/>初始值为0</td>
-    
-</tr>
-
-<tr>
-    <td>账户余额:</td>
-    <td><input style="width:142px;font-size:10pt;" type="text" name="member_surplus" value="0" id="id_member_surplus" value="{{member.member_surplus}}"/>初始值为0</td>
-    
-</tr>
 
 </table>
 <div style="margin-left:150px;margin-top:10px;">
-<input type="submit" value="保　存" class="btn"  />
+<input type="submit" value="保　存" class="btn"  />　<input type="button" value="返　回" onClick="history.go(-1);" />
 </div>
 </form>
 </div>

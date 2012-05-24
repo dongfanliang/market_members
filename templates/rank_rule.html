@@ -20,7 +20,7 @@
                 <div class="div">
                  
                 
-          <form action="{% url rank%}" method="POST">
+          <form action="{% url rank%}" method="POST">{% csrf_token %}
           <table class="tab">
               <tr>      
                  <td>            
@@ -35,7 +35,7 @@
           </table>
           
           <br>
-          <p>　　　　　　　　　　　　　　　　　　　　　　　　　<input type="submit" value="确　定"/>　<a href="javascript:show_info()">↓现有规则↓<a></p>
+          <p>　　　　　　　　　　　　　　　　　　　　　　　　　<input type="submit" value="确　定"/>　<input type="button" value="返　回" onClick="history.go(-1);" />　<a href="javascript:show_info()">↓现有规则↓<a></p>
           </form>
           <table class = "tab" style="display:none" id="mem_search">
         <tr>

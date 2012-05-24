@@ -8,7 +8,7 @@
 				</table>
 </div>
 <div class="conment-div">
-<form id="edit" method="post" action="{% url userinfo%}"><div style='display:none;'><input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='b773333d0c019876c1fee96ff0f98c9b' /></div>
+<form id="edit" method="post" action="{% url userinfo%}">{% csrf_token %}
 <table class="tab">
 
 <tr>
@@ -42,7 +42,7 @@
 
 <tr>
     <td>额外信息:</td>
-    <td><textarea name="extra" style="width:300px;height:50px;font-size:10pt;"  value="{{member.member_password}}"></textarea>输入少于255个数字或字母</td>
+    <td><textarea name="extra" style="width:300px;height:50px;font-size:10pt;">{{use.extra}}</textarea>输入少于255个数字或字母</td>
     
 </tr>
 

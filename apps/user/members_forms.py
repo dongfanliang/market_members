@@ -12,7 +12,7 @@ class RegisterForm(forms.Form):
     member_card_id = forms.RegexField(required=True, min_length = 10, max_length=10, label='会员卡号：',regex = r'(^[A-Za-z0-9]+$)',
                              widget = forms.TextInput(attrs = TEXTINPUTATTR))
 
-    member_name = forms.RegexField(required=True, min_length = 2, max_length=10, label='姓　　名：',regex = r'(^[A-Za-z0-9]+$)',
+    member_name = forms.CharField(required=True, min_length = 2, max_length=10, label='姓　　名：',
                              widget = forms.TextInput(attrs = TEXTINPUTATTR))
     #sex = forms.ChoiceField(widget=forms.Select, choices = (('0','性别'),('1','男'),('2','女')))
     member_password1 = forms.RegexField(required=True, min_length = 6,max_length=6, label='密　　码:', regex = r'(^[A-Za-z0-9]+$)',widget = forms.PasswordInput(attrs = TEXTINPUTATTR)) 
@@ -22,7 +22,7 @@ class RegisterForm(forms.Form):
     member_phone = forms.RegexField(required=True, min_length = 8,max_length=20, label=' 电　　话:', regex = r'(^[0-9]+$)',widget = forms.TextInput(attrs = TEXTINPUTATTR))
     member_rank = forms.ChoiceField(widget=forms.Select, choices = RANK, label='等　　级:')
     member_status = forms.ChoiceField(widget=forms.Select, choices = STATUS, label='状　　态:')
-    member_createtime = forms.DateField(initial=datetime.date.today, label='创建时间:',widget = forms.TextInput(attrs = TEXTINPUTATTR))
+    member_createtime = forms.DateField(initial=datetime.date.today(), label='创建时间:',widget = forms.TextInput(attrs = TEXTINPUTATTR))
     member_points = forms.RegexField(required=True, initial=0,label='积　　分:', regex = r'(^[0-9]+$)',widget = forms.TextInput(attrs = TEXTINPUTATTR),help_text='初始值为0') 
     member_surplus = forms.RegexField(required=True, initial=0,label='账户余额:', regex = r'(^[0-9]+$)',widget = forms.TextInput(attrs = TEXTINPUTATTR),help_text='初始值为0') 
 
@@ -36,6 +36,3 @@ class RegisterForm(forms.Form):
 class ConsumerForm(forms.Form):
     card = forms.RegexField(required=True, min_length = 10, max_length=10, label='请输入会员卡号：',regex = r'(^[A-Za-z0-9]+$)',
                                  widget = forms.TextInput(attrs = TEXTINPUTATTR))
-    money = forms.RegexField(required=True, min_length = 1, label='请输入消费金额：',regex = r'(^[A-Za-z0-9.]+$)',
-                                     widget = forms.TextInput(attrs = TEXTINPUTATTR),help_text="(元)")
-    method = forms.ChoiceField(required=True,widget=forms.Select, choices = METHOD, label='消费方式:')

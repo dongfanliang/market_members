@@ -53,6 +53,7 @@ table{empty-cells: show;border-collapse: collapse;}
 .add{background:url(../images/add.gif) 0px 3px no-repeat;}
 .delet{background:url(../images/dele.gif) 0px 3px no-repeat;}
 .editor{background:url(../images/editor.gif) 0px 3px no-repeat;}
+.gift{background:url(../images/red.gif) 0px 9px no-repeat;}
 .search{margin-right:0px;border:1;}
 
 /*------------start table--------------*/

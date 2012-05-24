@@ -8,6 +8,7 @@
 						<td class="add"><a href="{% url giftadd %}">添加礼品</a></td>
 						<td class="delet"><a href="javascript:del_members('membersform','{% url giftdelete%}');">删除</a></td>
 						<td class="editor"><a href="javascript:editor_members('membersform','{% url giftedit%}');">修改</a></td>
+						<td class="gift"><a href="{% url  pointgift%}">积分兑换</a></td>
 					</tr>
 				</table>
 		</div>
@@ -26,7 +27,7 @@
                                <td><img src = "/{{gift.name|last}}"><br>
                                    名称: {{gift.name|first}}<br>
                                    单价: {{gift.price}}(元)<br>
-                                   所需积分: {{gift.points}}<br>
+                                   所需积分: {{gift.points}}分<br>
                                    <input type="checkbox" name="cb" id="{{ gift.id }}" value="{{ gift.id }}" onclick="check('cb', 'checkall')"/>                                   
                                </td>
                        
@@ -41,7 +42,7 @@
                                <td><img src = "/{{gift.name|last}}"><br>
                                    名称: {{gift.name|first}}<br>
                                    单价: {{gift.price}}(元)<br>
-                                   所需积分: {{gift.points}}<br>
+                                   所需积分: {{gift.points}}分<br>
                                    <input type="checkbox" name="cb" id="{{ gift.id }}" value="{{ gift.id }}" onclick="check('cb', 'checkall')"/>                                   
                                </td>
                        
@@ -56,7 +57,7 @@
                                <td><img src = "/{{gift.name|last}}"><br>
                                    名称: {{gift.name|first}}<br>
                                    单价: {{gift.price}}(元)<br>
-                                   所需积分: {{gift.points}}<br>
+                                   所需积分: {{gift.points}}分<br>
                                    <input type="checkbox" name="cb" id="{{ gift.id }}" value="{{ gift.id }}" onclick="check('cb', 'checkall')"/>                                   
                                </td>
                        

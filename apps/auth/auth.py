@@ -8,7 +8,7 @@ def exit_username(username):
     test the username whether exit
     if exit return true else false
     """ 
-    user = User.objects.using('deefault').get(username=username)
+    user = User.objects.using('users').get(username=username)
     if user == None:
         return False
     else:
@@ -21,7 +21,7 @@ def checkpassword(username, password):
 
 def authenticated(username, password):
     try:
-        user = User.objects.using('default').get(username=str(username), password=str(password))
+        user = User.objects.using('users').get(username=str(username), password=str(password))
     except User.DoesNotExist:
         return False
     else:
